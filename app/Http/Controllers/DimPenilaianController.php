@@ -15,7 +15,7 @@ class DimPenilaianController extends Controller
 {
   public function index()
 {
-  $askm_dim_penilaian = DimPenilaian::all();
+  $askm_dim_penilaian = DimPenilaian::paginate(10);
   return view('askm_dim_penilaian',['askm_dim_penilaian'=>$askm_dim_penilaian]);
 }
 

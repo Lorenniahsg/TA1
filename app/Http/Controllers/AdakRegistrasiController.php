@@ -4,23 +4,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\AdekRegistrasi;
+use App\AdakRegistrasi;
 use Session;
-use App\Exports\AdekRegistrasiExport;
-use App\Imports\AdekRegistrasiImport;
+use App\Exports\AdakRegistrasiExport;
+use App\Imports\AdakRegistrasiImport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
 
-class AdekRegistrasiController extends Controller
+class AdakRegistrasiController extends Controller
 {
   public function index()
 {
-  $adak_regis = AdekRegistrasi::paginate(10);
+  $adak_regis = AdakRegistrasi::paginate(10);
   return view('adak_registrasi',['adak_registrasi'=>$adak_regis]);
 }
 public function export_excel()
 {
-  return Excel::download(new AdekRegistrasiExport, 'adak_registrasi.xlsx');
+  return Excel::download(new AdakRegistrasiExport, 'adak_registrasi.xlsx');
 }
 
 public function import_excel(Request $request)
@@ -40,7 +40,7 @@ public function import_excel(Request $request)
 		$file->move('file_excell',$nama_file);
 
 		// import data
-		Excel::import(new AdekRegistrasiImport, public_path('/file_excell/'.$nama_file));
+		Excel::import(new AdakRegistrasiImport, public_path('/file_excell/'.$nama_file));
 
 		// notifikasi dengan session
 		Session::flash('sukses','Data Berhasil Diimport!');

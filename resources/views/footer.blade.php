@@ -3,7 +3,7 @@
       <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; Pemilihan Mahasiswa Teladan IT Del 2020</p>
         </div>
-    </footer>
+</footer>
     <!-- END : Footer -->
 
     <!-- Bootstrap core JavaScript -->

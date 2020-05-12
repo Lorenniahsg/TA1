@@ -15,7 +15,7 @@ class DimxDimController extends Controller
 {
   public function index()
 {
-  $dimx_dim = DimxDim::all();
+  $dimx_dim = DimxDim::paginate(10);
   return view('dimx_dim',['dimx_dim'=>$dimx_dim]);
 }
 

@@ -2,10 +2,10 @@
 
 namespace App\Imports;
 
-use App\AdekRegistrasi;
+use App\AdakRegistrasi;
 use Maatwebsite\Excel\Concerns\ToModel;
 
-class AdekRegistrasiImport implements ToModel
+class AdakRegistrasiImport implements ToModel
 {
     /**
     * @param array $row
@@ -14,7 +14,7 @@ class AdekRegistrasiImport implements ToModel
     */
     public function model(array $row)
     {
-        return new AdekRegistrasi([
+        return new AdakRegistrasi([
           'dim_id'=> $row[0],
           'ta' => $row[1],
           'sem_ta' => $row[2],

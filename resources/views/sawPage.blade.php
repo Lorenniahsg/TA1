@@ -27,24 +27,24 @@
                role="tab">Seleksi Mahasiswa</a>
         </li>
     </ul>
-    
+
     <!-- Tab panes -->
     <div class="tab-content">
         <div class="tab-pane {{ request()->is('Mahasiswa') ? 'active': null }}" href="{{ url('Mahasiswa') }}"
              role="tabpanel">
             <h3>Mahasiswa</h3>
             <a href="{{ url('Penilaian') }}" class="btn btn-info btn-md">Seleksi Awal</a>
-            <table class="table">
+            <table class="table table-striped table-hover">
+
                 <th>No</th>
                 <th>Nama</th>
                 <th>Nilai IPK</th>
                 <th>Nilai Prilaku</th>
+                <th>sem ta</th>
                 <tr>
                     <?php $no = 1; ?>
-                    <?php if (is_array($krt) || is_object($krt)){ 
-                        
-                    ?>
-                        
+                    <?php if (is_array($krt) || is_object($krt)){ ?>
+
                     @foreach ($krt as $dt_mhs)
                         <td><?php echo($no++); ?></td>
                         <td>{{ $dt_mhs['nama'] }}</td>
@@ -67,8 +67,58 @@
                       @else
                         {{ 'data tidak terdefenisi' }}
                       @endif
-                        
+
                         </td>
+                        <td>{{ $dt_mhs['sem_ta'] }}</td>
+                </tr>
+                @endforeach
+                <?php } ?>
+            </table>
+        </div>
+
+
+        <div class="tab-pane {{ request()->is('Penilaian') ? 'active': null }}" href="{{ url('Penilaian') }}"
+             role="tabpanel">
+            <h3>Hasil Seleksi Awal IPK dan Nilai Perilaku (SAW)</h3>
+            <a href="{{ url('Skkm') }}" class="btn btn-info btn-md">Seleksi Akhir</a>
+            <table class="table table-striped table-hover">
+                <th>No</th>
+                <th>Nama</th>
+                <th>Nilai IPK</th>
+                <th>Nilai Perilaku</th>
+                <th>Nilai</th>
+                <tr>
+                    <?php $no = 1; ?>
+                    <?php if (is_array($krt) || is_object($krt)){ ?>
+                    @foreach ($krt as $key => $value)
+                        <td><?php echo($no++); ?></td>
+                            <td>{{ $value['nama'] }}</td>
+                            <td>
+                                {{ $value['IPK']}}
+                            </td>
+                            <td>
+                            @if( $value['akumulasi_skor'] == 0 )
+                                {{ 'A' }}
+                            @elseif($value['akumulasi_skor'] >=1 && $value['akumulasi_skor'] <=5)
+                                {{ 'AB' }}
+                            @elseif( $value['akumulasi_skor'] >=6 && $value['akumulasi_skor'] <=10)
+                                {{ 'B' }}
+                            @elseif( $value['akumulasi_skor'] >=11 && $value['akumulasi_skor'] <=15)
+                                {{ 'BC' }}
+                            @elseif( $value['akumulasi_skor'] >=16 && $value['akumulasi_skor'] <=25)
+                                {{ 'C' }}
+                            @elseif( $value['akumulasi_skor'] >=26 && $value['akumulasi_skor'] <=30)
+                                {{ 'D' }}
+                            @elseif( $value['akumulasi_skor'] > 30)
+                                {{ 'E' }}
+                            @else
+                                {{ 'data tidak terdefenisi' }}
+                            @endif
+                            </td>
+                        <td>
+                            {{ $key }}
+                        </td>
+
                 </tr>
                 @endforeach
                 <?php } ?>
@@ -76,10 +126,14 @@
 
         </div>
 
+
+
+
+
         <div class="tab-pane {{ request()->is('Skkm') ? 'active': null }}" href="{{ url('Skkm') }}" role="tabpanel">
             <h3>Data SKKM</h3>
-            <a href="{{ url('Skkm/hasil') }}" class="btn btn-info btn-md">Hasil</a>          
-             <table class="table">
+            <a href="{{ url('Skkm/hasil') }}" class="btn btn-info btn-md">Hasil</a>
+             <table class="table table-striped table-hover">
                 <th>No</th>
                 <th>Nama</th>
                 <th>Nilai Seleksi Pertama</th>
@@ -128,6 +182,7 @@
                         <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+
                     <div class="modal-body">
                     <form method="post" action="/Skkm/store_skkm">
                     {{ method_field('POST') }}
@@ -146,7 +201,7 @@
                     </div>
                 </div>
                 </div>
-                
+
                 <!-- edit modal -->
                 <div class="modal fade" id="editModal<?php echo $value['dim_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -158,14 +213,14 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                    <form method="post" action="{{ URL('/Skkm/edit_skkm/'. $value->skkm_id)}}" id=editform> 
+                    <form method="post" action="{{ URL('/Skkm/edit_skkm/'. $value->skkm_id)}}" id=editform>
                     <!-- {{ method_field('POST') }} -->
                     {{csrf_field()}}
                     <div class="form-group">
                         <label >SKKM</label>
                         <input type="number" name="skkm" id="skkm" value="<?php echo $value['skkm']; ?>" class="form-control"  placeholder="Enter SKKM">
                         <input type="number" hidden name="dim_id" value="<?php echo $value['dim_id']; ?>" class="form-control"  placeholder="ID Mahasiswa">
-                    </div> 
+                    </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -188,13 +243,13 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                    <form method="post" action="{{ URL('/Skkm/delete_skkm/'. $value->skkm_id)}}" id=deleteform> 
+                    <form method="post" action="{{ URL('/Skkm/delete_skkm/'. $value->skkm_id)}}" id=deleteform>
                     {{csrf_field()}}
                     <div class="form-group">
                         <label >SKKM</label>
                         <input disabled type="number" name="skkm" id="skkm" value="<?php echo $value['skkm']; ?>" class="form-control"  placeholder="Enter SKKM">
                         <input type="number" hidden name="dim_id" value="<?php echo $value['dim_id']; ?>" class="form-control"  placeholder="ID Mahasiswa">
-                    </div> 
+                    </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -209,11 +264,11 @@
                 <?php } ?>
             </table>
         </div>
-                        
+
 
         <div class="tab-pane {{ request()->is('Skkm/hasil') ? 'active': null }}" href="{{ url('Skkm/hasil') }}" role="tabpanel">
             <h3>Hasil Seleksi SKKM</h3>
-            <table class="table">
+            <table class="table table-striped table-hover">
                 <th>No</th>
                 <th>Nama</th>
                 <th>Hasil Seleksi SKKM</th>
@@ -229,57 +284,6 @@
                 @endforeach
                 <?php } ?>
             </table>
-        </div>
-
-
-
-        <div class="tab-pane {{ request()->is('Penilaian') ? 'active': null }}" href="{{ url('Penilaian') }}"
-             role="tabpanel">
-            <h3>Hasil Seleksi Awal IPK dan Nilai Perilaku (SAW)</h3>
-            <a href="{{ url('Skkm') }}" class="btn btn-info btn-md">Seleksi Akhir</a> 
-            <table class="table">
-                <th>No</th>
-                <th>Nama</th>
-                <th>Nilai IPK</th>
-                <th>Nilai Perilaku</th>
-                <th>Nilai</th>
-                <tr>
-                    <?php $no = 1; ?>
-                    <?php if (is_array($krt) || is_object($krt)){ ?>
-                    @foreach ($krt as $key => $value)
-                        <td><?php echo($no++); ?></td>
-                            <td>{{ $value['nama'] }}</td>
-                            <td>
-                                {{ $value['IPK']}}
-                            </td>
-                            <td>
-                            @if( $value['akumulasi_skor'] == 0 )
-                                {{ 'A' }}
-                            @elseif($value['akumulasi_skor'] >=1 && $value['akumulasi_skor'] <=5)
-                                {{ 'AB' }}
-                            @elseif( $value['akumulasi_skor'] >=6 && $value['akumulasi_skor'] <=10)
-                                {{ 'B' }}
-                            @elseif( $value['akumulasi_skor'] >=11 && $value['akumulasi_skor'] <=15)
-                                {{ 'BC' }}
-                            @elseif( $value['akumulasi_skor'] >=16 && $value['akumulasi_skor'] <=25)
-                                {{ 'C' }}
-                            @elseif( $value['akumulasi_skor'] >=26 && $value['akumulasi_skor'] <=30)
-                                {{ 'D' }}
-                            @elseif( $value['akumulasi_skor'] > 30)
-                                {{ 'E' }}
-                            @else
-                                {{ 'data tidak terdefenisi' }}
-                            @endif
-                            </td>
-                        <td>
-                            {{ $key }}
-                        </td>
-                                                                     
-                </tr>
-                @endforeach
-                <?php } ?>
-            </table>
-
         </div>
     </div>
 </div>

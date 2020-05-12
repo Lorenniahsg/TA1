@@ -82,8 +82,9 @@
 
 
 		<a href="/adak_registrasi/export_excel" class="btn btn-success my-3" target="_blank" hidden>EXPORT EXCEL</a>
-
-		<table class='table table-bordered'>
+    <br>
+		<table class="table table-striped table-hover">
+      <strong style="float: right;">Data Per Halaman : {{ $adak_registrasi->perPage() }}</strong>
 			<thead>
 				<tr>
 					<th>No</th>
@@ -104,10 +105,8 @@
 				@endforeach
 			</tbody>
 		</table>
-
-    Halaman : {{ $adak_registrasi->currentPage() }}<br>
-    Jumlah Data : {{ $adak_registrasi->total() }}<br>
-    Data Per Halaman : {{ $adak_registrasi->perPage() }}<br>
+    <strong>Halaman : {{ $adak_registrasi->currentPage() }}</strong>
+    <strong style="float: right;">Jumlah Data : {{ $adak_registrasi->total() }}</strong>
     <div class="card-body">
       {{ $adak_registrasi->links()}}
     </div>
