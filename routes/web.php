@@ -19,18 +19,12 @@ Route::get('fuzzytopsisPage','PageController@fuzzytopsisPage');
 Route::get('/MahasiswaFT', 'PageController@MahasiswaFT');
 Route::get('/PenilaianFT', 'PageController@PenilaianFT');
 
-Route::get('/PerhitunganFT', 'PageController@PerhitunganFT');
 Route::get('/Penilaian', 'Controller@Penilaian');
 
-Route::get('/Perhitungan', 'Controller@Perhitungan');
 
 Route::get('/Skkm', 'SKKMController@Skkm');
 
-Route::get('Kriteria/route_tambah_krt_saw', 'KriteriaController@route_tambah_krt_saw');
-Route::post('Kriteria/store_kriteria','KriteriaController@store_kriteria');
-Route::get('/Kriteria/edit_kriteria/{id}', 'KriteriaController@edit_kriteria');
-Route::put('/Kriteria/update_kriteria/{id}','KriteriaController@update_kriteria');
-Route::get('/Kriteria/hapus_kriteria/{id}', 'KriteriaController@hapus_kriteria');
+
 Route::get('/Mahasiswa', 'Controller@Mahasiswa');
 
 
