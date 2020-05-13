@@ -90,21 +90,12 @@ class Controller extends BaseController
 
     public function Penilaian()
     {
-<<<<<<< HEAD
         $saw = DimPenilaian::selectRaw("
-=======
-      $kriteria_saw = kriteria::all();
-      $kriteria_s_a_w = DimPenilaian::selectRaw("
->>>>>>> 6465270a3cb4a181ed98a4df82ac64fcd2204bca
       askm_dim_penilaian.akumulasi_skor,
       askm_dim_penilaian.dim_id,
       askm_dim_penilaian.ta,
       askm_dim_penilaian.sem_ta");
-<<<<<<< HEAD
         $query = AdekRegistrasi::selectRaw("dimx_dim.nama,adak_registrasi.ta,(SUM(adak_registrasi.nr)/4) AS IPK, adak_registrasi.sem_ta, adak_registrasi.nr, p.akumulasi_skor")
-=======
-        $query = AdakRegistrasi::selectRaw("dimx_dim.nama,adak_registrasi.ta,adak_registrasi.nr AS IPK, adak_registrasi.sem_ta, adak_registrasi.nr, p.akumulasi_skor")
->>>>>>> 6465270a3cb4a181ed98a4df82ac64fcd2204bca
             ->join('dimx_dim', 'dimx_dim.dim_id', 'adak_registrasi.dim_id')
             ->leftJoin(\DB::raw("(" . $saw->toSql() . ") as p"), function ($query) {
                 $query->on('p.dim_id', '=', 'adak_registrasi.dim_id');
@@ -152,33 +143,18 @@ class Controller extends BaseController
    
     public function Mahasiswa()
     {
-<<<<<<< HEAD
         $saw = DimPenilaian::selectRaw("
-=======
-      $kriteria_saw = kriteria::all();
-      $kriteria_s_a_w = DimPenilaian::selectRaw("
->>>>>>> 6465270a3cb4a181ed98a4df82ac64fcd2204bca
       askm_dim_penilaian.akumulasi_skor,
       askm_dim_penilaian.dim_id,
       askm_dim_penilaian.ta,
       askm_dim_penilaian.sem_ta");
-<<<<<<< HEAD
-        $query = AdekRegistrasi::selectRaw("dimx_dim.nama,adak_registrasi.ta,(SUM(adak_registrasi.nr)/4) AS IPK, adak_registrasi.sem_ta, adak_registrasi.nr, p.akumulasi_skor")
-=======
-        $query = AdakRegistrasi::selectRaw("dimx_dim.nama,adak_registrasi.ta,adak_registrasi.nr AS IPK, adak_registrasi.sem_ta, adak_registrasi.nr, p.akumulasi_skor")
-
->>>>>>> 6465270a3cb4a181ed98a4df82ac64fcd2204bca
+        $query = AdakRegistrasi::selectRaw("dimx_dim.nama,adak_registrasi.ta,(SUM(adak_registrasi.nr)/4) AS IPK, adak_registrasi.sem_ta, adak_registrasi.nr, p.akumulasi_skor")
             ->join('dimx_dim', 'dimx_dim.dim_id', 'adak_registrasi.dim_id')
             ->leftJoin(\DB::raw("(" . $saw->toSql() . ") as p"), function ($query) {
                 $query->on('p.dim_id', '=', 'adak_registrasi.dim_id');
                 $query->on('p.ta', '=', 'adak_registrasi.ta');
                 $query->on('p.sem_ta', '=', 'adak_registrasi.sem_ta');
             })
-<<<<<<< HEAD
-=======
-
-            ->orderBy('dimx_dim.nama','asc')
->>>>>>> 6465270a3cb4a181ed98a4df82ac64fcd2204bca
             ->groupBy('dimx_dim.dim_id')
             ->get();
             return view('sawPage', ['krt' => $query], ['vdata' => $saw]);
@@ -191,11 +167,7 @@ class Controller extends BaseController
       askm_dim_penilaian.dim_id,
       askm_dim_penilaian.ta,
       askm_dim_penilaian.sem_ta");
-<<<<<<< HEAD
         $query = AdekRegistrasi::selectRaw("skkm.id AS skkm_id,skkm.skkm, dimx_dim.dim_id, dimx_dim.nama,adak_registrasi.ta,(SUM(adak_registrasi.nr)/4) AS IPK, adak_registrasi.sem_ta, adak_registrasi.nr, p.akumulasi_skor")
-=======
-        $query = AdakRegistrasi::selectRaw("skkm.id AS skkm_id,skkm.skkm, dimx_dim.dim_id, dimx_dim.nama,adak_registrasi.ta,(SUM(adak_registrasi.nr)/2) AS IPK, adak_registrasi.sem_ta, adak_registrasi.nr, p.akumulasi_skor")
->>>>>>> 6465270a3cb4a181ed98a4df82ac64fcd2204bca
             ->join('dimx_dim', 'dimx_dim.dim_id', 'adak_registrasi.dim_id')
             ->leftJoin('skkm', 'skkm.dim_id', 'dimx_dim.dim_id')
             ->leftJoin(\DB::raw("(" . $saw->toSql() . ") as p"), function ($query) {
@@ -241,17 +213,9 @@ class Controller extends BaseController
         krsort($combineData);
 
         $krt = array_slice($combineData, 0, 20);
-<<<<<<< HEAD
 
 
         return view('sawPage', ['vdata' => $saw])->with(compact('krt'));
-=======
-        // print_r($krt);
-        // die();
-        //dd($krt);
-        //die();
-        return view('sawPage', ['vdata' => $kriteria_saw])->with(compact('krt'));
->>>>>>> 6465270a3cb4a181ed98a4df82ac64fcd2204bca
     }
 
 }

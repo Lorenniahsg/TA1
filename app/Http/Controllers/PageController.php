@@ -35,21 +35,12 @@ class PageController extends Controller
 
     public function MahasiswaFT()
     {
-<<<<<<< HEAD
         $ft = DimPenilaian::selectRaw("
-=======
-      $kriteria_ft = Kriteria::all();
-      $kriteria_f_t = DimPenilaian::selectRaw("
->>>>>>> 6465270a3cb4a181ed98a4df82ac64fcd2204bca
       askm_dim_penilaian.akumulasi_skor,
       askm_dim_penilaian.dim_id,
       askm_dim_penilaian.ta,
       askm_dim_penilaian.sem_ta");
-<<<<<<< HEAD
-        $query = AdekRegistrasi::selectRaw("dimx_dim.nama,adak_registrasi.ta,(SUM(adak_registrasi.nr)/4) AS IPK, adak_registrasi.sem_ta, adak_registrasi.nr, p.akumulasi_skor")
-=======
-        $query = AdakRegistrasi::selectRaw("dimx_dim.nama,adak_registrasi.ta,(SUM(adak_registrasi.nr)/2) AS IPK, adak_registrasi.sem_ta, adak_registrasi.nr, p.akumulasi_skor")
->>>>>>> 6465270a3cb4a181ed98a4df82ac64fcd2204bca
+        $query = AdakRegistrasi::selectRaw("dimx_dim.nama,adak_registrasi.ta,(SUM(adak_registrasi.nr)/4) AS IPK, adak_registrasi.sem_ta, adak_registrasi.nr, p.akumulasi_skor")
             ->join('dimx_dim', 'dimx_dim.dim_id', 'adak_registrasi.dim_id')
             ->leftJoin(\DB::raw("(" . $ft->toSql() . ") as p"), function ($query) {
                 $query->on('p.dim_id', '=', 'adak_registrasi.dim_id');
@@ -67,13 +58,12 @@ class PageController extends Controller
 
     public function PenilaianFT()
     {
-<<<<<<< HEAD
       $ft = DimPenilaian::selectRaw("
       askm_dim_penilaian.akumulasi_skor,
       askm_dim_penilaian.dim_id,
       askm_dim_penilaian.ta,
       askm_dim_penilaian.sem_ta");
-        $query = AdekRegistrasi::selectRaw("dimx_dim.nama,adak_registrasi.ta,(SUM(adak_registrasi.nr)/4) AS IPK, adak_registrasi.sem_ta, adak_registrasi.nr, p.akumulasi_skor")
+        $query = AdakRegistrasi::selectRaw("dimx_dim.nama,adak_registrasi.ta,(SUM(adak_registrasi.nr)/4) AS IPK, adak_registrasi.sem_ta, adak_registrasi.nr, p.akumulasi_skor")
             ->join('dimx_dim', 'dimx_dim.dim_id', 'adak_registrasi.dim_id')
             ->leftJoin(\DB::raw("(" . $ft->toSql() . ") as p"), function ($query) {
                 $query->on('p.dim_id', '=', 'adak_registrasi.dim_id');
@@ -112,26 +102,6 @@ class PageController extends Controller
 
 
       return view('fuzzytopsisPage',['krt'=>$query,'vdata'=>$ft]);
-=======
-      $kriteria_ft = kriteria::all();
-      $kriteria_f_t = DimPenilaian::selectRaw("
-                         askm_dim_penilaian.akumulasi_skor,
-                         askm_dim_penilaian.dim_id,
-                         askm_dim_penilaian.ta,
-                         askm_dim_penilaian.sem_ta");
-        $query = AdakRegistrasi::selectRaw("dimx_dim.nama,adak_registrasi.ta, adak_registrasi.sem_ta, adak_registrasi.nr, p.akumulasi_skor")
-                 ->join('dimx_dim','dimx_dim.dim_id','adak_registrasi.dim_id')
-                 ->leftJoin(\DB::raw("(" . $kriteria_f_t->toSql() . ") as p"),function ($query) {
-                     $query->on('p.dim_id','=','adak_registrasi.dim_id');
-                     $query->on('p.ta','=','adak_registrasi.ta');
-                     $query->on('p.sem_ta','=','adak_registrasi.sem_ta');
-                 })
-                 ->orderBy('dimx_dim.dim_id','desc')
-                 ->orderBy('adak_registrasi.ta','asc')
-                 ->orderBy('adak_registrasi.sem_ta','asc')
-                 ->get();
-      return view('fuzzytopsisPage',['krt_ft'=>$query,'vdata'=>$kriteria_ft]);
->>>>>>> 6465270a3cb4a181ed98a4df82ac64fcd2204bca
     }
 
     public function PerhitunganFT(){
