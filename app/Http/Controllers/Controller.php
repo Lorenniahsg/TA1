@@ -27,6 +27,7 @@ class Controller extends BaseController
 
     public function test(){
 
+<<<<<<< HEAD
         $dimx_dim = DimPenilaian::selectRaw("
         askm_dim_penilaian.akumulasi_skor,
         askm_dim_penilaian.dim_id,
@@ -43,8 +44,24 @@ class Controller extends BaseController
   
               ->orderBy('dimx_dim.nama','asc')
               ->get();
+=======
+      $dimx_dim = DimPenilaian::selectRaw("
+      askm_dim_penilaian.akumulasi_skor,
+      askm_dim_penilaian.dim_id,
+      askm_dim_penilaian.ta,
+      askm_dim_penilaian.sem_ta");
+        $query = AdakRegistrasi::selectRaw("dimx_dim.nama,adak_registrasi.ta,adak_registrasi.nr AS IPK, adak_registrasi.sem_ta, adak_registrasi.nr, p.akumulasi_skor")
+>>>>>>> e516cd3b76b212e285404507e580c5bdca4c823f
 
+            ->join('dimx_dim', 'dimx_dim.dim_id', 'adak_registrasi.dim_id')
+            ->leftJoin(\DB::raw("(" . $dimx_dim->toSql() . ") as p"), function ($query) {
+                $query->on('p.dim_id', '=', 'adak_registrasi.dim_id');
+                $query->on('p.ta', '=', 'adak_registrasi.ta');
+                $query->on('p.sem_ta', '=', 'adak_registrasi.sem_ta');
+            })
 
+            ->orderBy('dimx_dim.nama','asc')
+            ->get();
 
 
       $tahun = AdakRegistrasi::selectRaw("
@@ -63,18 +80,22 @@ class Controller extends BaseController
       // $count = AdakRegistrasi::max("nr");
 
       $tfn = [
-        ["very_high"=>[7,9,9]],
-        ["high"=>[5,7,9]],
-        ["average"=>[3,5,7]],
-        ["low"=>[1,3,5]],
-        ["very_low"=>[1,1,3]]
+        "Very High"=>[7,9,9],
+        "High"=>[5,7,9],
+        "Average"=>[3,5,7],
+        "Low"=>[1,3,5],
+        "Very Low"=>[1,1,3]
       ];
 
+<<<<<<< HEAD
       $a = $tfn[0]["very_high"];
       $b = $tfn[1]["high"];
       $c = $tfn[2]["average"];
       $d = $tfn[3]["low"];
       $e = $tfn[4]["very_low"];
+=======
+
+>>>>>>> e516cd3b76b212e285404507e580c5bdca4c823f
       return view("seleksi_awal_ft",['semua'=>$query,'tahun'=>$tahun,'tfn'=>$tfn]);
     }
 
@@ -87,7 +108,7 @@ class Controller extends BaseController
         return view('sawPage', ['krt' => $data], ['vdata' => $kriteria_saw]);
     }
 
-   
+
 
     public function Penilaian()
     {
@@ -141,7 +162,7 @@ class Controller extends BaseController
     }
 
 
-   
+
     public function Mahasiswa()
     {
         $saw = DimPenilaian::selectRaw("

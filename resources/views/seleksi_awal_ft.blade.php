@@ -11,67 +11,79 @@
 
 <br><br><br><br><br><br>
 
+<<<<<<< HEAD
 <div class="container">
   <table border='2'>
   <th>TFN</th>
   <th></th>
   <th></th>
   <th>s</th>
-
-  @foreach($tfn as $t)
-    @foreach($t as $q)
-    <tr>
-
-    </tr>
-      @foreach($q as $w)
-          <td style="color:red;">{{$w}}</td>
-      @endforeach
-        @if($q == $tfn[0]["very_high"])
-          <td>{{"Very_High"}}</td>
-          @elseif($q == $tfn[1]['high'])
-          <td>{{'High'}}</td>
-          @elseif($q == $tfn[2]['average'])
-          <td>{{'Average'}}</td>
-          @elseif($q == $tfn[3]['low'])
-          <td>{{'Low'}}</td>
-          @elseif($q == $tfn[4]['very_low'])
-          <td>{{'Very Low'}}</td>
+=======
+<table border="1">
+  <tr>
+    <th>TFn</th>
+    <th>AA</th>
+  </tr>
+  <tr>
+    <td>
+      @foreach($tfn as $a)
+      <br>
+        @foreach($a as $q)
+          {{$q}}
+        @endforeach
+          @if($a == $tfn["Very High"])
+          {{"Very High"}}
+          @elseif($a == $tfn['High'])
+          {{'High'}}
+          @elseif($a == $tfn['Average'])
+          {{'Average'}}
+          @elseif($a == $tfn['Low'])
+          {{'Low'}}
+          @elseif($a == $tfn['Very Low'])
+          {{'Very Low'}}
           @else
           {{'not found'}}
-        @endif
+          @endif
+      @endforeach
+    </td>
+  </tr>
+</table>
+
+<br>
+@foreach(array_keys($tfn) as $s => $v)
+<br>
+  @foreach($tfn as $qw)
+
+    @foreach($qw as $ww)
+
     @endforeach
-  @endforeach
-  </table>
+>>>>>>> e516cd3b76b212e285404507e580c5bdca4c823f
 
 
-
-@foreach($tfn as $t)
-  @foreach($t as $q)
-    @foreach($q as $w)
-    {{$w}}
-    @if( $w == 0 )
-    {{'A'}}
-    @elseif($w >=1 && $w <=5)
-      {{ 'AB' }}
-    @elseif( $w >=6 && $w <=10)
-      {{ 'B' }}
-    @elseif( $w >=11 && $w <=15)
-      {{ 'BC' }}
-    @elseif( $w >=16 && $w <=25)
-      {{ 'C' }}
-    @elseif( $w >=26 && $w <=30)
-      {{ 'D' }}
-    @elseif( $w > 30)
-      {{ 'E' }}
+    @endforeach
+    @if($s == 0)
+      {{$v}}
+    @elseif($s == 1)
+      {{$v}}
+    @elseif($s == 2)
+      {{$v}}
+    @elseif($s == 3)
+      {{$v}}
+    @elseif($s == 4)
+      {{$v}}
     @else
-      {{ 'data tidak terdefenisi' }}
+      {{'Nothing'}}
     @endif
-    @endforeach
-  @endforeach
+
+
+
 
 @endforeach
 
+
 <br><br>Pemisah
+
+
 
     <table border="1" class="table">
       <thead>
@@ -84,7 +96,12 @@
           <th>TFN1</th>
           <th>PRILAKU</th>
           <th>TFN2</th>
+<<<<<<< HEAD
           <th></th>
+=======
+          <th>TEST IP</th>
+          <th>TEST Prilaku</th>
+>>>>>>> e516cd3b76b212e285404507e580c5bdca4c823f
         </tr>
       </thead>
       <tbody>
@@ -96,6 +113,7 @@
           <td>{{$s['ta']}}</td>
           <td>{{$s['sem_ta']}}</td>
           <td>{{$s['nr']}}</td>
+<<<<<<< HEAD
           <td>
             @if( $s['nr'] >= 3.30 && $s['nr'] <= 4.00 )
             {{'Very High ('}}
@@ -165,10 +183,205 @@
             {{ $p }}
           @endforeach
           {{')'}}
+=======
+          <td>
+            <!-- Veery High -->
+            @if( $s['nr'] >= 3.30 && $s['nr'] <= 4.00 )
+            @foreach(array_keys($tfn) as $key => $value)
+              @if($key == 0)
+                {{$value . '('}}
+              @endif
+            @endforeach
+
+            @foreach($tfn['Very High'] as  $a)
+              {{$a}}
+            @endforeach
+              {{')'}}
+
+            <!-- High -->
+            @elseif($s['nr'] >= 2.50 && $s['nr'] <=3.29)
+              @foreach(array_keys($tfn) as $key => $value)
+                @if($key == 1)
+                  {{$value . '('}}
+                @endif
+              @endforeach
+
+              @foreach($tfn['High'] as $a)
+                {{$a}}
+              @endforeach
+                  {{')'}}
+
+            <!-- Average  -->
+            @elseif( $s['nr'] >= 1.70 && $s['nr'] <= 2.49)
+              @foreach(array_keys($tfn) as $key => $value)
+                @if($key == 2)
+                  {{$value . '('}}
+                @endif
+              @endforeach
+
+              @foreach($tfn['Average'] as $a)
+                {{$a}}
+              @endforeach
+
+              {{')'}}
+
+            <!-- Low -->
+            @elseif( $s['nr'] >= 0.90 && $s['nr'] <=1.69)
+            @foreach(array_keys($tfn) as $key => $value)
+              @if($key == 3)
+                {{$value . '('}}
+              @endif
+            @endforeach
+
+            @foreach($tfn['Low'] as $a)
+              {{$a}}
+            @endforeach
+
+              {{')'}}
+            <!-- Very Low -->
+            @elseif($s['nr'] >= 0.0 && $s['nr'] <=0.89)
+            @foreach(array_keys($tfn) as $key => $value)
+              @if($key == 4)
+                {{$value . '('}}
+              @endif
+            @endforeach
+
+            @foreach($tfn['Very Low'] as $a)
+              {{$a}}
+            @endforeach
+            {{')'}}
+            @else
+              {{ 'data tidak terdefenisi' }}
+            @endif
+
+          </td>
+          <td>{{$s['akumulasi_skor']}}</td>
+          <td>
+            <!-- Very Low -->
+        @if($s['akumulasi_skor'] >=0 && $s['akumulasi_skor'] <=5)
+          @foreach(array_keys($tfn) as $key => $value)
+            @if($key == 4)
+              {{$value . '('}}
+            @endif
+          @endforeach
+
+          @foreach($tfn['Very Low'] as $a)
+            {{$a}}
+          @endforeach
+            {{')'}}
+
+          <!-- Low -->
+        @elseif( $s['akumulasi_skor'] >=6 && $s['akumulasi_skor'] <=10)
+          @foreach(array_keys($tfn) as $key => $value)
+            @if($key == 3)
+              {{$value . '('}}
+            @endif
+          @endforeach
+
+          @foreach($tfn['Low'] as $a)
+            {{$a}}
+          @endforeach
+            {{')'}}
+
+          <!-- Average -->
+        @elseif( $s['akumulasi_skor'] >=11 && $s['akumulasi_skor'] <=15)
+          @foreach(array_keys($tfn) as $key => $value)
+            @if($key == 2)
+              {{$value . '('}}
+            @endif
+          @endforeach
+
+          @foreach($tfn['Average'] as $a)
+            {{$a}}
+          @endforeach
+            {{')'}}
+
+          <!-- High -->
+        @elseif( $s['akumulasi_skor'] >=16 && $s['akumulasi_skor'] <=25)
+          @foreach(array_keys($tfn) as $key => $value)
+            @if($key == 1)
+              {{$value . '('}}
+            @endif
+          @endforeach
+
+          @foreach($tfn['High'] as $a)
+            {{$a}}
+          @endforeach
+            {{')'}}
+
+          <!-- Very High -->
+        @elseif( $s['akumulasi_skor'] >=26 && $s['akumulasi_skor'] <= 100)
+          @foreach(array_keys($tfn) as $key => $value)
+            @if($key == 0)
+              {{$value . '('}}
+            @endif
+          @endforeach
+
+          @foreach($tfn['Very High'] as $a)
+            {{$a}}
+          @endforeach
+            {{')'}}
+
+>>>>>>> e516cd3b76b212e285404507e580c5bdca4c823f
         @else
           {{ 'data tidak terdefenisi' }}
         @endif
+          </td>
 
+          <td>
+            @if($s['ta'] == 2017 && $s['sem_ta']== 2 || $s['sem_ta']== 1)
+                @if( $s['nr'] >= 3.30 && $s['nr'] <= 4.00 )
+                  {{$tfn['Very High'][0]}}
+
+                <!-- High -->
+                @elseif($s['nr'] >= 2.50 && $s['nr'] <=3.29)
+                  {{$tfn['High'][0]}}
+
+                <!-- Average  -->
+                @elseif( $s['nr'] >= 1.70 && $s['nr'] <= 2.49)
+                  {{$tfn['Average'][0]}}
+
+                <!-- Low -->
+                @elseif( $s['nr'] >= 0.90 && $s['nr'] <=1.69)
+                  {{$tfn['Low'][0]}}
+
+                <!-- Very Low -->
+                @elseif($s['nr'] >= 0.0 && $s['nr'] <=0.89)
+                  {{$tfn['Very Low'][0]}}
+
+                @else
+                  {{ 'data tidak terdefenisi' }}
+                @endif
+
+            @elseif($s['ta'] == 2018 && $s['sem_ta'] == 2)
+              {{'ola'}}
+            @endif
+          </td>
+          <td>
+            @if($s['ta'] == 2017 && $s['sem_ta']==2 || $s['sem_ta']==1)
+              @if($s['akumulasi_skor'] >=0 && $s['akumulasi_skor'] <=5)
+              {{$tfn['Very Low'][0]}}
+
+                <!-- Low -->
+              @elseif( $s['akumulasi_skor'] >=6 && $s['akumulasi_skor'] <=10)
+                {{$tfn['Low'][0]}}
+
+                <!-- Average -->
+              @elseif( $s['akumulasi_skor'] >=11 && $s['akumulasi_skor'] <=15)
+                {{$tfn['Average'][0]}}
+
+                <!-- High -->
+              @elseif( $s['akumulasi_skor'] >=16 && $s['akumulasi_skor'] <=25)
+                {{$tfn['Very High'][0]}}
+
+                <!-- Very High -->
+              @elseif( $s['akumulasi_skor'] >=26 && $s['akumulasi_skor'] <= 100)
+                {{$tfn['Very High'][0]}}
+
+              @else
+                {{ 'data tidak terdefenisi' }}
+              @endif
+            @endif
           </td>
           <td>
             @if($s['ta'] == 2017 && $s['sem_ta']==2 || $s['sem_ta']==1)
