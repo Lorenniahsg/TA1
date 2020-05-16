@@ -77,11 +77,7 @@ class SKKMController extends Controller
       askm_dim_penilaian.dim_id,
       askm_dim_penilaian.ta,
       askm_dim_penilaian.sem_ta");
-<<<<<<< HEAD
-        $query = AdekRegistrasi::selectRaw("skkm.skkm, dimx_dim.dim_id, dimx_dim.nama,adak_registrasi.ta,(SUM(adak_registrasi.nr)/4) AS IPK, adak_registrasi.sem_ta, adak_registrasi.nr, p.akumulasi_skor")
-=======
-        $query = AdakRegistrasi::selectRaw("skkm.skkm, dimx_dim.dim_id, dimx_dim.nama,adak_registrasi.ta,(SUM(adak_registrasi.nr)/2) AS IPK, adak_registrasi.sem_ta, adak_registrasi.nr, p.akumulasi_skor")
->>>>>>> 6465270a3cb4a181ed98a4df82ac64fcd2204bca
+        $query = AdakRegistrasi::selectRaw("skkm.skkm, dimx_dim.dim_id, dimx_dim.nama,adak_registrasi.ta,(SUM(adak_registrasi.nr)/4) AS IPK, adak_registrasi.sem_ta, adak_registrasi.nr, p.akumulasi_skor")
             ->join('dimx_dim', 'dimx_dim.dim_id', 'adak_registrasi.dim_id')
             ->leftJoin('skkm', 'skkm.dim_id', 'dimx_dim.dim_id')
             ->leftJoin(\DB::raw("(" . $saw->toSql() . ") as p"), function ($query) {

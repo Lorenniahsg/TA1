@@ -40,7 +40,6 @@
                 <th>Nama</th>
                 <th>Nilai IPK</th>
                 <th>Nilai Prilaku</th>
-                <th>sem ta</th>
                 <tr>
                     <?php $no = 1; ?>
                     <?php if (is_array($krt) || is_object($krt)){ ?>
@@ -69,7 +68,6 @@
                       @endif
 
                         </td>
-                        <td>{{ $dt_mhs['sem_ta'] }}</td>
                 </tr>
                 @endforeach
                 <?php } ?>
