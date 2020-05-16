@@ -82,7 +82,7 @@
           <th>No</th>
           <th>Nama</th>
           <th>Tahun</th>
-          <th>SEM</th>
+          <th>SEMESTER</th>
           <th>IP</th>
           <th>TFN1</th>
           <th>PRILAKU</th>

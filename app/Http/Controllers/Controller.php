@@ -81,24 +81,18 @@ class Controller extends BaseController
         return view('sawPage', ['krt' => $data], ['vdata' => $kriteria_saw]);
     }
 
-    public function Kriteria()
-    {
-      $kriteria_saw = kriteria::all();
-      $data = $this->Mahasiswa();
-      return view('sawPage',['krt'=>$data,'vdata'=>$kriteria_saw]);
-    }
+
 
     public function Penilaian()
     {
-      $kriteria_saw = kriteria::all();
-      $kriteria_s_a_w = DimPenilaian::selectRaw("
+        $saw = DimPenilaian::selectRaw("
       askm_dim_penilaian.akumulasi_skor,
       askm_dim_penilaian.dim_id,
       askm_dim_penilaian.ta,
       askm_dim_penilaian.sem_ta");
-        $query = AdakRegistrasi::selectRaw("dimx_dim.nama,adak_registrasi.ta,adak_registrasi.nr AS IPK, adak_registrasi.sem_ta, adak_registrasi.nr, p.akumulasi_skor")
+        $query = AdekRegistrasi::selectRaw("dimx_dim.nama,adak_registrasi.ta,(SUM(adak_registrasi.nr)/4) AS IPK, adak_registrasi.sem_ta, adak_registrasi.nr, p.akumulasi_skor")
             ->join('dimx_dim', 'dimx_dim.dim_id', 'adak_registrasi.dim_id')
-            ->leftJoin(\DB::raw("(" . $kriteria_s_a_w->toSql() . ") as p"), function ($query) {
+            ->leftJoin(\DB::raw("(" . $saw->toSql() . ") as p"), function ($query) {
                 $query->on('p.dim_id', '=', 'adak_registrasi.dim_id');
                 $query->on('p.ta', '=', 'adak_registrasi.ta');
                 $query->on('p.sem_ta', '=', 'adak_registrasi.sem_ta');
@@ -137,52 +131,41 @@ class Controller extends BaseController
         krsort($combineData);
         $krt = array_slice($combineData, 0, 20);
 
-        return view('sawPage', ['vdata' => $kriteria_saw])->with(compact('krt'));
+        return view('sawPage', ['vdata' => $saw])->with(compact('krt'));
     }
 
 
-    public function Perhitungan()
-    {
-        $kriteria_saw = kriteria::all();
-        $data = $this->Mahasiswa();
-        return view('sawPage', ['krt' => $data], ['vdata' => $kriteria_saw]);
-    }
+
     public function Mahasiswa()
     {
-      $kriteria_saw = kriteria::all();
-      $kriteria_s_a_w = DimPenilaian::selectRaw("
+        $saw = DimPenilaian::selectRaw("
       askm_dim_penilaian.akumulasi_skor,
       askm_dim_penilaian.dim_id,
       askm_dim_penilaian.ta,
       askm_dim_penilaian.sem_ta");
-        $query = AdakRegistrasi::selectRaw("dimx_dim.nama,adak_registrasi.ta,adak_registrasi.nr AS IPK, adak_registrasi.sem_ta, adak_registrasi.nr, p.akumulasi_skor")
-
+        $query = AdakRegistrasi::selectRaw("dimx_dim.nama,adak_registrasi.ta,(SUM(adak_registrasi.nr)/4) AS IPK, adak_registrasi.sem_ta, adak_registrasi.nr, p.akumulasi_skor")
             ->join('dimx_dim', 'dimx_dim.dim_id', 'adak_registrasi.dim_id')
-            ->leftJoin(\DB::raw("(" . $kriteria_s_a_w->toSql() . ") as p"), function ($query) {
+            ->leftJoin(\DB::raw("(" . $saw->toSql() . ") as p"), function ($query) {
                 $query->on('p.dim_id', '=', 'adak_registrasi.dim_id');
                 $query->on('p.ta', '=', 'adak_registrasi.ta');
                 $query->on('p.sem_ta', '=', 'adak_registrasi.sem_ta');
             })
-
-            ->orderBy('dimx_dim.nama','asc')
             ->groupBy('dimx_dim.dim_id')
             ->get();
-
-        return view('sawPage', ['krt' => $query], ['vdata' => $kriteria_saw]);
+            return view('sawPage', ['krt' => $query], ['vdata' => $saw]);
     }
 
     public function Skkm()
     {
-        $kriteria_saw = kriteria::all();
-        $kriteria_s_a_w = DimPenilaian::selectRaw("
+        $saw = DimPenilaian::selectRaw("
       askm_dim_penilaian.akumulasi_skor,
       askm_dim_penilaian.dim_id,
       askm_dim_penilaian.ta,
       askm_dim_penilaian.sem_ta");
-        $query = AdakRegistrasi::selectRaw("skkm.id AS skkm_id,skkm.skkm, dimx_dim.dim_id, dimx_dim.nama,adak_registrasi.ta,(SUM(adak_registrasi.nr)/2) AS IPK, adak_registrasi.sem_ta, adak_registrasi.nr, p.akumulasi_skor")
+        $query = AdekRegistrasi::selectRaw("skkm.id AS skkm_id,skkm.skkm, dimx_dim.dim_id, dimx_dim.nama,adak_registrasi.ta,(SUM(adak_registrasi.nr)/4) AS IPK, adak_registrasi.sem_ta, adak_registrasi.nr, p.akumulasi_skor")
             ->join('dimx_dim', 'dimx_dim.dim_id', 'adak_registrasi.dim_id')
             ->leftJoin('skkm', 'skkm.dim_id', 'dimx_dim.dim_id')
-            ->leftJoin(\DB::raw("(" . $kriteria_s_a_w->toSql() . ") as p"), function ($query) {
+            ->leftJoin(\DB::raw("(" . $saw->toSql() . ") as p"), function ($query) {
                 $query->on('p.dim_id', '=', 'adak_registrasi.dim_id');
                 $query->on('p.ta', '=', 'adak_registrasi.ta');
                 $query->on('p.sem_ta', '=', 'adak_registrasi.sem_ta');
@@ -222,20 +205,12 @@ class Controller extends BaseController
         }
 
         $combineData = array_combine($arrayNilaiAkhir, $arrayMahasiswa);
-        //$combineDataSkkm = array_combine($arraySkkm, $combineData);
-        //dd($arrayNilaiAkhir);
-        //dd($arrayMahasiswa);
-        //dd($arraySkkm);
-        // dd($arraySkkm);
-        // die();
         krsort($combineData);
 
         $krt = array_slice($combineData, 0, 20);
-        // print_r($krt);
-        // die();
-        //dd($krt);
-        //die();
-        return view('sawPage', ['vdata' => $kriteria_saw])->with(compact('krt'));
+
+
+        return view('sawPage', ['vdata' => $saw])->with(compact('krt'));
     }
 
 }
