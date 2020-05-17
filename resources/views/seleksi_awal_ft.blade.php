@@ -272,8 +272,10 @@
       </tbody>
     </table>
 
-    @foreach($hasilMin as $ii)
+    {{dd($hasilMin)}}
+
+    <!-- @foreach($hasilMin as $ii)
       @foreach($ii as $rr)
-        <p>{{$rr}}</p>
+        <p>{{dd($rr)}}</p>
       @endforeach
-    @endforeach
+    @endforeach -->
