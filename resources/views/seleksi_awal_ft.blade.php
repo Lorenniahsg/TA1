@@ -11,14 +11,6 @@
 
 <br><br><br><br><br><br>
 
-<<<<<<< HEAD
-<div class="container">
-  <table border='2'>
-  <th>TFN</th>
-  <th></th>
-  <th></th>
-  <th>s</th>
-=======
 <table border="1">
   <tr>
     <th>TFn</th>
@@ -57,7 +49,6 @@
     @foreach($qw as $ww)
 
     @endforeach
->>>>>>> e516cd3b76b212e285404507e580c5bdca4c823f
 
 
     @endforeach
@@ -91,17 +82,13 @@
           <th>No</th>
           <th>Nama</th>
           <th>Tahun</th>
-          <th>SEMESTEr</th>
+          <th>SEM</th>
           <th>IP</th>
           <th>TFN1</th>
           <th>PRILAKU</th>
           <th>TFN2</th>
-<<<<<<< HEAD
-          <th></th>
-=======
           <th>TEST IP</th>
           <th>TEST Prilaku</th>
->>>>>>> e516cd3b76b212e285404507e580c5bdca4c823f
         </tr>
       </thead>
       <tbody>
@@ -113,77 +100,6 @@
           <td>{{$s['ta']}}</td>
           <td>{{$s['sem_ta']}}</td>
           <td>{{$s['nr']}}</td>
-<<<<<<< HEAD
-          <td>
-            @if( $s['nr'] >= 3.30 && $s['nr'] <= 4.00 )
-            {{'Very High ('}}
-              @foreach($tfn[0]['very_high'] as $k)
-                {{$k}}
-              @endforeach
-              {{')'}}
-            @elseif($s['nr'] >=2.50 && $s['nr'] <=3.29)
-            {{'High ('}}
-              @foreach($tfn[1]['high'] as $k)
-                {{$k}}
-              @endforeach
-              {{')'}}
-
-            @elseif( $s['nr'] >=1.70 && $s['nr'] <= 2.49)
-            {{'Average ('}}
-              @foreach($tfn[2]['average'] as $k)
-                {{$k}}
-              @endforeach
-              {{')'}}
-            @elseif( $s['nr'] >=0.90 && $s['nr'] <=1.69)
-            {{'Low ('}}
-              @foreach($tfn[3]['low'] as $k)
-                {{$k}}
-              @endforeach
-              {{')'}}
-            @elseif( $s['nr'] >=0 && $s['nr'] <=0.89)
-            {{'Very Low ('}}
-              @foreach($tfn[4]['very_low'] as $k)
-                {{$k}}
-              @endforeach
-              {{')'}}
-            @else
-              {{ 'data tidak terdefenisi' }}
-            @endif
-
-          </td>
-          <td>{{$s['akumulasi_skor']}}</td>
-          <td>
-        @if($s['akumulasi_skor'] >=0 && $s['akumulasi_skor'] <=5)
-          {{ 'Very Low (' }}
-          @foreach($tfn[4]['very_low'] as $p)
-            {{ $p }}
-          @endforeach
-          {{')'}}
-        @elseif( $s['akumulasi_skor'] >=6 && $s['akumulasi_skor'] <=10)
-          {{ 'Low (' }}
-          @foreach($tfn[3]['low'] as $p)
-            {{ $p }}
-          @endforeach
-          {{')'}}
-        @elseif( $s['akumulasi_skor'] >=11 && $s['akumulasi_skor'] <=15)
-          {{ 'Average (' }}
-          @foreach($tfn[2]['average'] as $p)
-            {{ $p }}
-          @endforeach
-          {{')'}}
-        @elseif( $s['akumulasi_skor'] >=16 && $s['akumulasi_skor'] <=25)
-          {{ 'High (' }}
-          @foreach($tfn[1]['high'] as $p)
-            {{ $p }}
-          @endforeach
-          {{')'}}
-        @elseif( $s['akumulasi_skor'] >=26)
-          {{ 'Very High (' }}
-          @foreach($tfn[0]['very_high'] as $p)
-            {{ $p }}
-          @endforeach
-          {{')'}}
-=======
           <td>
             <!-- Veery High -->
             @if( $s['nr'] >= 3.30 && $s['nr'] <= 4.00 )
@@ -322,7 +238,6 @@
           @endforeach
             {{')'}}
 
->>>>>>> e516cd3b76b212e285404507e580c5bdca4c823f
         @else
           {{ 'data tidak terdefenisi' }}
         @endif
@@ -372,7 +287,7 @@
 
                 <!-- High -->
               @elseif( $s['akumulasi_skor'] >=16 && $s['akumulasi_skor'] <=25)
-                {{$tfn['Very High'][0]}}
+                {{$tfn['High'][0]}}
 
                 <!-- Very High -->
               @elseif( $s['akumulasi_skor'] >=26 && $s['akumulasi_skor'] <= 100)
@@ -382,15 +297,6 @@
                 {{ 'data tidak terdefenisi' }}
               @endif
             @endif
-          </td>
-          <td>
-            @if($s['ta'] == 2017 && $s['sem_ta']==2 || $s['sem_ta']==1)
-              @foreach($tfn[0]['very_high'] as $tt)
-                {{$tt}}
-              @endforeach
-            @endif
-
-
           </td>
           @endforeach
 
