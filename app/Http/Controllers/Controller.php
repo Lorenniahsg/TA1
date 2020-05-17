@@ -68,6 +68,8 @@ class Controller extends BaseController
         "Very Low"=>[1,1,3]
       ];
 
+      
+
 
       return view("seleksi_awal_ft",['semua'=>$query,'tahun'=>$tahun,'tfn'=>$tfn]);
     }
@@ -189,7 +191,6 @@ class Controller extends BaseController
             })
             ->groupBy('dimx_dim.dim_id')
             ->get();
-          
 
         $arrayNilaiAkhir = array();
         $arrayMahasiswa = array();

@@ -11,7 +11,6 @@
 
 <br><br><br><br><br><br>
 
-<<<<<<< HEAD
 <table border="1">
   <tr>
     <th>TFn</th>
@@ -67,8 +66,6 @@
       {{'Nothing'}}
     @endif
 
-=======
->>>>>>> 1020a5a117258ceeb9a850762f4ddac7810e3525
 
 
 
@@ -81,11 +78,7 @@
           <th>No</th>
           <th>Nama</th>
           <th>Tahun</th>
-<<<<<<< HEAD
           <th>SEM</th>
-=======
-          <th>SEMESTER</th>
->>>>>>> 1020a5a117258ceeb9a850762f4ddac7810e3525
           <th>IP</th>
           <th>TFN1</th>
           <th>PRILAKU</th>
@@ -250,7 +243,6 @@
                   $min3 = $tfn['Average'][0];
                   $min4 = $tfn['Low'][0];
                   $min5 = $tfn['Very Low'][0];
-
                   ?>
           <td>
             <?php $valMatch = null; ?>
@@ -306,11 +298,7 @@
 
                 <!-- High -->
               @elseif( $s['akumulasi_skor'] >=16 && $s['akumulasi_skor'] <=25)
-<<<<<<< HEAD
                 {{$tfn['High'][0]}}
-=======
-                <?php $valMatch = $tfn['High'][0]; ?>
->>>>>>> 1020a5a117258ceeb9a850762f4ddac7810e3525
 
                 <!-- Very High -->
               @elseif( $s['akumulasi_skor'] >=26 && $s['akumulasi_skor'] <= 100)
@@ -322,16 +310,6 @@
               @else
                 {{ 'data tidak terdefenisi' }}
               @endif
-<<<<<<< HEAD
-=======
-
-              <?php
-                if ((!isset($hasilMin[$s['nama']]["test_perilaku_min"])) || ($hasilMin[$s['nama']]["test_perilaku_min"] > $valMatch)) {
-                  $hasilMin[$s['nama']]["test_perilaku_min"] = $valMatch;
-                }
-              ?>
-
->>>>>>> 1020a5a117258ceeb9a850762f4ddac7810e3525
             @endif
           </td>
           @endforeach
