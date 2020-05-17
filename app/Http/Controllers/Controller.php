@@ -172,6 +172,7 @@ class Controller extends BaseController
             })
             ->groupBy('dimx_dim.dim_id')
             ->get();
+          
 
         $arrayNilaiAkhir = array();
         $arrayMahasiswa = array();
