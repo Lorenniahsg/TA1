@@ -27,31 +27,12 @@ class Controller extends BaseController
 
     public function test(){
 
-<<<<<<< HEAD
-        $dimx_dim = DimPenilaian::selectRaw("
-        askm_dim_penilaian.akumulasi_skor,
-        askm_dim_penilaian.dim_id,
-        askm_dim_penilaian.ta,
-        askm_dim_penilaian.sem_ta");
-          $query = AdakRegistrasi::selectRaw("dimx_dim.nama,adak_registrasi.ta,adak_registrasi.nr AS IPK, adak_registrasi.sem_ta, adak_registrasi.nr, p.akumulasi_skor")
-  
-              ->join('dimx_dim', 'dimx_dim.dim_id', 'adak_registrasi.dim_id')
-              ->leftJoin(\DB::raw("(" . $dimx_dim->toSql() . ") as p"), function ($query) {
-                  $query->on('p.dim_id', '=', 'adak_registrasi.dim_id');
-                  $query->on('p.ta', '=', 'adak_registrasi.ta');
-                  $query->on('p.sem_ta', '=', 'adak_registrasi.sem_ta');
-              })
-  
-              ->orderBy('dimx_dim.nama','asc')
-              ->get();
-=======
       $dimx_dim = DimPenilaian::selectRaw("
       askm_dim_penilaian.akumulasi_skor,
       askm_dim_penilaian.dim_id,
       askm_dim_penilaian.ta,
       askm_dim_penilaian.sem_ta");
         $query = AdakRegistrasi::selectRaw("dimx_dim.nama,adak_registrasi.ta,adak_registrasi.nr AS IPK, adak_registrasi.sem_ta, adak_registrasi.nr, p.akumulasi_skor")
->>>>>>> e516cd3b76b212e285404507e580c5bdca4c823f
 
             ->join('dimx_dim', 'dimx_dim.dim_id', 'adak_registrasi.dim_id')
             ->leftJoin(\DB::raw("(" . $dimx_dim->toSql() . ") as p"), function ($query) {
@@ -87,15 +68,7 @@ class Controller extends BaseController
         "Very Low"=>[1,1,3]
       ];
 
-<<<<<<< HEAD
-      $a = $tfn[0]["very_high"];
-      $b = $tfn[1]["high"];
-      $c = $tfn[2]["average"];
-      $d = $tfn[3]["low"];
-      $e = $tfn[4]["very_low"];
-=======
 
->>>>>>> e516cd3b76b212e285404507e580c5bdca4c823f
       return view("seleksi_awal_ft",['semua'=>$query,'tahun'=>$tahun,'tfn'=>$tfn]);
     }
 
@@ -117,7 +90,7 @@ class Controller extends BaseController
       askm_dim_penilaian.dim_id,
       askm_dim_penilaian.ta,
       askm_dim_penilaian.sem_ta");
-        $query = AdakRegistrasi::selectRaw("dimx_dim.nama,adak_registrasi.ta,(SUM(adak_registrasi.nr)/4) AS IPK, adak_registrasi.sem_ta, adak_registrasi.nr, p.akumulasi_skor")
+        $query = AdekRegistrasi::selectRaw("dimx_dim.nama,adak_registrasi.ta,(SUM(adak_registrasi.nr)/4) AS IPK, adak_registrasi.sem_ta, adak_registrasi.nr, p.akumulasi_skor")
             ->join('dimx_dim', 'dimx_dim.dim_id', 'adak_registrasi.dim_id')
             ->leftJoin(\DB::raw("(" . $saw->toSql() . ") as p"), function ($query) {
                 $query->on('p.dim_id', '=', 'adak_registrasi.dim_id');
@@ -189,7 +162,7 @@ class Controller extends BaseController
       askm_dim_penilaian.dim_id,
       askm_dim_penilaian.ta,
       askm_dim_penilaian.sem_ta");
-        $query = AdakRegistrasi::selectRaw("skkm.id AS skkm_id,skkm.skkm, dimx_dim.dim_id, dimx_dim.nama,adak_registrasi.ta,(SUM(adak_registrasi.nr)/4) AS IPK, adak_registrasi.sem_ta, adak_registrasi.nr, p.akumulasi_skor")
+        $query = AdekRegistrasi::selectRaw("skkm.id AS skkm_id,skkm.skkm, dimx_dim.dim_id, dimx_dim.nama,adak_registrasi.ta,(SUM(adak_registrasi.nr)/4) AS IPK, adak_registrasi.sem_ta, adak_registrasi.nr, p.akumulasi_skor")
             ->join('dimx_dim', 'dimx_dim.dim_id', 'adak_registrasi.dim_id')
             ->leftJoin('skkm', 'skkm.dim_id', 'dimx_dim.dim_id')
             ->leftJoin(\DB::raw("(" . $saw->toSql() . ") as p"), function ($query) {
@@ -199,7 +172,7 @@ class Controller extends BaseController
             })
             ->groupBy('dimx_dim.dim_id')
             ->get();
-          
+
 
         $arrayNilaiAkhir = array();
         $arrayMahasiswa = array();
