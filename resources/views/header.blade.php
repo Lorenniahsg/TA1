@@ -34,10 +34,10 @@
                 <a class="nav-link js-scroll-trigger" href="{{ url('/') }}">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="{{ url('/MahasiswaFT') }}">Fuzzy Topsis</a>
+                <a class="nav-link js-scroll-trigger" href="{{ url('/dimx_dim') }}">SAW</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="{{ url('/dimx_dim') }}">SAW</a>
+                <a class="nav-link js-scroll-trigger" href="{{ url('/PerhitunganFT') }}">Fuzzy Topsis</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link js-scroll-trigger" href="{{ url('/perbandingan') }}">Perbandingan</a>

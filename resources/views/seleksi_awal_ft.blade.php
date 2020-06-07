@@ -9,15 +9,32 @@
   <!-- END : Header -->
 @endsection
 
-<br><br><br><br><br><br>
+<br><br><br><br>
+
+
+<div class="container">
+  <ul class="nav nav-tabs" role="tablist">
+    <!-- <li class="nav-item">
+      <a class="nav-link" href="{{ url('MahasiswaFT') }}" role="tab">Data Mahasiswa</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{ url('PenilaianFT') }}" role="tab">Data Penilaian</a>
+    </li> -->
+    <li class="nav-item">
+      <a class="nav-link" href="{{ url('PerhitunganFT') }}" role="tab">Data  Mahasiswa</a>
+    </li>
+    <!-- <li class="nav-item">
+      <a class="nav-link" href="{{ url('test2') }}" role="tab">Seleksi  Mahasiswa</a>
+    </li> -->
+  </ul>
+</div>
 
 
 
-
-
-
-
-    <table border="1" class="table">
+<div class="container">
+  <h2>Daftar Mahasiswa</h2>
+<a class="btn btn-primary" href="{{ url('Seleksi_FT') }}">Seleksi Mahasiswa</a>
+  <table class="table table-striped table-hover">
       <thead>
         <tr>
           <th>No</th>
@@ -28,12 +45,13 @@
           <th>TFN1</th>
           <th>PRILAKU</th>
           <th>TFN2</th>
-          <th>TEST IP</th>
-          <th>TEST Prilaku</th>
         </tr>
       </thead>
       <tbody>
-        <?php $no=1; $hasilMin = []; ?>
+        <?php
+        $no=1;
+
+         ?>
           @foreach($semua as $s)
         <tr>
           <td><?php echo $no++; ?></td>
@@ -112,7 +130,26 @@
             @endif
 
           </td>
-          <td>{{$s['akumulasi_skor']}}</td>
+          <td>
+            @if( $s['akumulasi_skor'] == 0 )
+                {{ 'A' }}
+            @elseif($s['akumulasi_skor'] >=1 && $s['akumulasi_skor'] <=5)
+                {{ 'AB' }}
+            @elseif( $s['akumulasi_skor'] >=6 && $s['akumulasi_skor'] <=10)
+                {{ 'B' }}
+            @elseif( $s['akumulasi_skor'] >=11 && $s['akumulasi_skor'] <=15)
+                {{ 'BC' }}
+            @elseif( $s['akumulasi_skor'] >=16 && $s['akumulasi_skor'] <=25)
+                {{ 'C' }}
+            @elseif( $s['akumulasi_skor'] >=26 && $s['akumulasi_skor'] <=30)
+                {{ 'D' }}
+            @elseif( $s['akumulasi_skor'] > 30)
+                {{ 'E' }}
+            @else
+                {{ 'data tidak terdefenisi' }}
+            @endif
+          =  {{$s['akumulasi_skor']}}
+          </td>
           <td>
             <!-- Very Low -->
         @if($s['akumulasi_skor'] >=0 && $s['akumulasi_skor'] <=5)
@@ -183,99 +220,11 @@
           {{ 'data tidak terdefenisi' }}
         @endif
           </td>
-            <?php $min = $tfn['Very High'][0];
-                  $min2 = $tfn['High'][0];
-                  $min3 = $tfn['Average'][0];
-                  $min4 = $tfn['Low'][0];
-                  $min5 = $tfn['Very Low'][0];
 
-                  ?>
-          <td>
-            <?php $valMatch = null; ?>
-            @if($s['ta'] == 2017 && $s['sem_ta']== 2 || $s['sem_ta']== 1)
-                <!-- Very High -->
-                @if( $s['nr'] >= 3.30 && $s['nr'] <= 4.00 )
-                  <?php $valMatch = $min; ?>
-
-                <!-- High -->
-                @elseif($s['nr'] >= 2.50 && $s['nr'] <=3.29)
-                  <?php $valMatch = $tfn['High'][0]; ?>
-
-                <!-- Average  -->
-                @elseif( $s['nr'] >= 1.70 && $s['nr'] <= 2.49)
-                  <?php $valMatch = $tfn['Average'][0]; ?>
-
-                <!-- Low -->
-                @elseif( $s['nr'] >= 0.90 && $s['nr'] <=1.69)
-                  <?php $valMatch = $tfn['Low'][0]; ?>
-
-                <!-- Very Low -->
-                @elseif($s['nr'] >= 0.0 && $s['nr'] <=0.89)
-                  <?php $valMatch = $tfn['Very Low'][0]; ?>
-                @endif
-
-                @if(isset($valMatch))
-                  {{ $valMatch }}
-                @else
-                  {{ 'data tidak terdefenisi' }}
-                @endif
-
-                <?php
-                  if ((!isset($hasilMin[$s['nama']]["test_ip_min"])) || ($hasilMin[$s['nama']]["test_ip_min"] > $valMatch)) {
-                    $hasilMin[$s['nama']]["test_ip_min"] = $valMatch;
-                  }
-                ?>
-            @endif
-          </td>
-          <td>
-            <?php $valMatch = null; ?>
-            @if($s['ta'] == 2017 && $s['sem_ta']==2 || $s['sem_ta']==1)
-                <!-- Very Low -->
-              @if($s['akumulasi_skor'] >=0 && $s['akumulasi_skor'] <=5)
-                <?php $valMatch = $tfn['Very Low'][0]; ?>
-
-                <!-- Low -->
-              @elseif( $s['akumulasi_skor'] >=6 && $s['akumulasi_skor'] <=10)
-                <?php $valMatch = $tfn['Low'][0]; ?>
-
-                <!-- Average -->
-              @elseif( $s['akumulasi_skor'] >=11 && $s['akumulasi_skor'] <=15)
-                <?php $valMatch = $tfn['Average'][0]; ?>
-
-                <!-- High -->
-              @elseif( $s['akumulasi_skor'] >=16 && $s['akumulasi_skor'] <=25)
-                <?php $valMatch = $tfn['High'][0]; ?>
-
-                <!-- Very High -->
-              @elseif( $s['akumulasi_skor'] >=26 && $s['akumulasi_skor'] <= 100)
-                <?php $valMatch = $tfn['Very High'][0]; ?>
-              @endif
-
-              @if(isset($valMatch))
-                {{ $valMatch }}
-              @else
-                {{ 'data tidak terdefenisi' }}
-              @endif
-
-              <?php
-                if ((!isset($hasilMin[$s['nama']]["test_perilaku_min"])) || ($hasilMin[$s['nama']]["test_perilaku_min"] > $valMatch)) {
-                  $hasilMin[$s['nama']]["test_perilaku_min"] = $valMatch;
-                }
-              ?>
-
-            @endif
-          </td>
           @endforeach
 
           </tr>
-</div>
       </tbody>
     </table>
 
-    {{dd($hasilMin)}}
-
-    <!-- @foreach($hasilMin as $ii)
-      @foreach($ii as $rr)
-        <p>{{dd($rr)}}</p>
-      @endforeach
-    @endforeach -->
+</div>

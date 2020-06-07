@@ -33,29 +33,6 @@ class PageController extends Controller
       return view('fuzzytopsisPage',['krt_ft'=>$data,'vdata'=>$kriteria_ft]);
     }
 
-    public function MahasiswaFT()
-    {
-        $ft = DimPenilaian::selectRaw("
-      askm_dim_penilaian.akumulasi_skor,
-      askm_dim_penilaian.dim_id,
-      askm_dim_penilaian.ta,
-      askm_dim_penilaian.sem_ta");
-        $query = AdakRegistrasi::selectRaw("dimx_dim.nama,adak_registrasi.ta,(SUM(adak_registrasi.nr)/4) AS IPK, adak_registrasi.sem_ta, adak_registrasi.nr, p.akumulasi_skor")
-            ->join('dimx_dim', 'dimx_dim.dim_id', 'adak_registrasi.dim_id')
-            ->leftJoin(\DB::raw("(" . $ft->toSql() . ") as p"), function ($query) {
-                $query->on('p.dim_id', '=', 'adak_registrasi.dim_id');
-                $query->on('p.ta', '=', 'adak_registrasi.ta');
-                $query->on('p.sem_ta', '=', 'adak_registrasi.sem_ta');
-            })
-            ->orderBy('dimx_dim.dim_id', 'desc')
-            ->orderBy('adak_registrasi.ta', 'asc')
-            ->orderBy('adak_registrasi.sem_ta', 'asc')
-            ->groupBy('dimx_dim.dim_id')
-            ->get();
-
-        return view('fuzzytopsisPage', ['krt' => $query], ['vdata' => $ft]);
-    }
-
     public function PenilaianFT()
     {
       $ft = DimPenilaian::selectRaw("
@@ -78,7 +55,7 @@ class PageController extends Controller
 
 
 
-       
+
         $VeryHigh = [7,9,9];
         $High = [5,7,9];
         $Average = [3,5,7];
@@ -98,7 +75,7 @@ class PageController extends Controller
             if($data['akumulasi_skor'] <=5){ $data['akumulasi_skor'] = $VeryLow;}
         }
 
-        
+
 
 
       return view('fuzzytopsisPage',['krt'=>$query,'vdata'=>$ft]);

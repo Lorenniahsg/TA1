@@ -14,14 +14,14 @@
   <div class="container">
   <!-- <h1>Fuzzy Topsis</h1> -->
     <ul class="nav nav-tabs" role="tablist">
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" href="{{ url('MahasiswaFT') }}" role="tab">Data Mahasiswa</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{ url('PenilaianFT') }}" role="tab">Data Penilaian</a>
-      </li>
+      </li> -->
       <li class="nav-item">
-        <a class="nav-link" href="{{ url('PerhitunganFT') }}" role="tab">Data Perhitungan</a>
+        <a class="nav-link" href="{{ url('PerhitunganFT') }}" role="tab">Seleksi Mahasiswa</a>
       </li>
     </ul>
 
@@ -38,10 +38,10 @@
                 <th>Nilai Prilaku </th>
                 <tr>
                     <?php $no = 1; ?>
-                    <?php if (is_array($krt) || is_object($krt)){ 
-                        
+                    <?php if (is_array($krt) || is_object($krt)){
+
                     ?>
-                        
+
                     @foreach ($krt as $dt_mhs)
                         <td><?php echo($no++); ?></td>
                         <td>{{ $dt_mhs['nama'] }}</td>
@@ -74,7 +74,7 @@
                       @else
                         {{ 'data tidak terdefenisi' }}
                       @endif
-                        
+
                         </td>
                 </tr>
                 @endforeach
@@ -88,16 +88,16 @@
     <a href="{{ url('PenilaianFT') }}" class="btn btn-info btn-md">Seleksi Awal</a>
     <table class="table">
       <th>No</th>
-      <th>Nama</th>   
+      <th>Nama</th>
       <th>Nilai IPK</th>
       <th>Nilai Prilaku</th>
       <th>Hasil Normalisasi</th>
       <tr>
                     <?php $no = 1; ?>
-                    <?php if (is_array($krt) || is_object($krt)){ 
-                        
+                    <?php if (is_array($krt) || is_object($krt)){
+
                     ?>
-                        
+
                     @foreach ($krt as $dt_mhs)
                         <td><?php echo($no++); ?></td>
                         <td>{{ $dt_mhs['nama'] }}</td>
@@ -130,7 +130,7 @@
                       @else
                         {{ 'data tidak terdefenisi' }}
                       @endif
-                        
+
                         </td>
                 </tr>
                 @endforeach

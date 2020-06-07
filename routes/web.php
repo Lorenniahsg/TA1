@@ -16,11 +16,19 @@ Route::get('/Kriteria', 'Controller@Kriteria');
 
 
 
-Route::get("/test","Controller@test");
+Route::get("/PerhitunganFT","Controller@PerhitunganFT");
+Route::get("/Seleksi_FT","Controller@Seleksi_FT");
+
+Route::get('/NFDM','Controller@NFDM');
+Route::get('/PBHNFDM','Controller@PBHNFDM');
+Route::get('/FPIS_FNIS','Controller@FPIS_FNIS');
+Route::get('/jarak_FPIS_FNIS','Controller@jarak_FPIS_FNIS');
+Route::get('/hasilAwal','Controller@hasilAwal');
+
 
 Route::get('sawPage','Controller@sawPage');
 Route::get('fuzzytopsisPage','PageController@fuzzytopsisPage');
-Route::get('/MahasiswaFT', 'PageController@MahasiswaFT');
+
 Route::get('/PenilaianFT', 'PageController@PenilaianFT');
 
 Route::get('/Penilaian', 'Controller@Penilaian');
