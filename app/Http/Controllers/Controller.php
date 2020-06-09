@@ -32,6 +32,7 @@ class Controller extends BaseController
       $data = $this->PerhitunganFT();
       $hasilAkhir = $data['hasilAkhir'];
       $tfn = $data['tfn'];
+
       // $paginate = $this->paginate($hasilAkhir, 2);
       return view("seleksi_awal_ft2",['semua'=>$data,'tfn'=>$tfn,'hasilAkhir'=>$hasilAkhir]);
     }
@@ -274,8 +275,6 @@ class Controller extends BaseController
 
         return view('sawPage', ['krt' => $data], ['vdata' => $kriteria_saw]);
     }
-
-
 
     public function Penilaian()
     {

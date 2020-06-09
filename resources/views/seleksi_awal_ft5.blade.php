@@ -37,9 +37,9 @@
         <th>Min Test IP</th>
         <th>Total Test Ip</th>
         <th>IP Max</th>
-        <th>Min Test Prilaku</th>
-        <th>Total Test Prilaku</th>
         <th>Prilaku Max</th>
+        <th>Total Test Prilaku</th>
+        <th>Min Test Prilaku</th>
       </tr>
     </thead>
     <tbody>
@@ -64,9 +64,9 @@
         $fpis2 = $tfn['Very High'][1] * $value['total_test_ip'] * 1/3 / $Cj['Cj'];
         $fpis3 = $tfn['Very High'][2] * $value['test_ip_max'] / $Cj['Cj'];
 
-        $fnis1 = $tfn['Very Low'][0] * $Aj['Aj'] / $value['test_perilaku_min'];
-        $fnis2 = $tfn['Very Low'][1] * $Aj['Aj'] / $value['total_test_perilaku'] * 1/3;
-        $fnis3 = $tfn['Very Low'][2] * $Aj['Aj'] / $value['test_prilaku_max'];
+        $fnis1 = $tfn['Very Low'][0] * $Aj['Aj'] / $value['test_prilaku_max'];
+        $fnis2 = $tfn['Very Low'][1] * ($Aj['Aj'] / ($value['total_test_perilaku'] * 1/3));
+        $fnis3 = $tfn['Very Low'][2] * $Aj['Aj'] / $value['test_perilaku_min'];
         ?>
         <td>{{ $fpis1 }}</td>
         <td>{{ $fpis2 }}</td>
@@ -111,6 +111,7 @@
 
 <br><br>
   <table border="1" class="table">
+
     <thead class="thead-dark">
       <tr>
         <th scope="col"><b>FPIS IP A*</b></th>

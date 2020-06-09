@@ -35,9 +35,9 @@
         <th>Min Test IP</th>
         <th>Total Test Ip</th>
         <th>IP Max</th>
-        <th>Min Test Prilaku</th>
-        <th>Total Test Prilaku</th>
         <th>Prilaku Max</th>
+        <th>Total Test Prilaku</th>
+        <th>Min Test Prilaku</th>
       </tr>
     </thead>
     <tbody>
@@ -48,9 +48,9 @@
         <td>{{ $tfn['Very High'][1] * $value['total_test_ip'] * 1/3 / $Cj['Cj'] }}</td>
         <td>{{ $tfn['Very High'][2] * $value['test_ip_max'] / $Cj['Cj'] }}</td>
 
-        <td>{{ $tfn['Very Low'][0] * $Aj['Aj'] / $value['test_perilaku_min']}}</td>
-        <td>{{ $tfn['Very Low'][1] * $Aj['Aj'] / $value['total_test_perilaku'] * 1/3}}</td>
-        <td>{{ $tfn['Very Low'][2] * $Aj['Aj'] / $value['test_prilaku_max']}}</td>
+        <td>{{ $tfn['Very Low'][0] * $Aj['Aj'] / $value['test_prilaku_max']}}</td>
+        <td>{{ $tfn['Very Low'][1] * ($Aj['Aj'] / ($value['total_test_perilaku'] * 1/3))}}</td>
+        <td>{{ $tfn['Very Low'][2] * $Aj['Aj'] / $value['test_perilaku_min']}}</td>
         @endforeach
       </tr>
     </tbody>

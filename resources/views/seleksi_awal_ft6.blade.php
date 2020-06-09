@@ -30,19 +30,20 @@
   <h1>Jarak FPIS dan FNIS</h1>
 
   <br><br>
-
+    <?php
+      $maxfpis = [];
+      $minfniis = []; ?>
         @foreach($hasilAkhir as $key =>$value)
         <?php
-        $maxfpis = [];
-        $minfniis = [];
+
 
         $fpis1 = $tfn['Very High'][0] * $value['test_ip_min'] / $Cj['Cj'];
         $fpis2 = $tfn['Very High'][1] * $value['total_test_ip'] * 1/3 / $Cj['Cj'];
         $fpis3 = $tfn['Very High'][2] * $value['test_ip_max'] / $Cj['Cj'];
 
-        $fnis1 = $tfn['Very Low'][0] * $Aj['Aj'] / $value['test_perilaku_min'];
-        $fnis2 = $tfn['Very Low'][1] * $Aj['Aj'] / $value['total_test_perilaku'] * 1/3;
-        $fnis3 = $tfn['Very Low'][2] * $Aj['Aj'] / $value['test_prilaku_max'];
+        $fnis1 = $tfn['Very Low'][0] * $Aj['Aj'] / $value['test_prilaku_max'];
+        $fnis2 = $tfn['Very Low'][1] * ($Aj['Aj'] / ($value['total_test_perilaku'] * 1/3));
+        $fnis3 = $tfn['Very Low'][2] * $Aj['Aj'] / $value['test_perilaku_min'];
 
 
         if ((!isset($maxfpis[$key]["FPIS_MAX1"])) || ($maxfpis[$key]["FPIS_MAX1"] > $fpis1))

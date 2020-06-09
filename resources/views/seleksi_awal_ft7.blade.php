@@ -30,19 +30,20 @@
   <h1>Jarak FPIS dan FNIS</h1>
 
   <br><br>
-
+    <?php
+      $maxfpis = [];
+      $minfniis = []; ?>
         @foreach($hasilAkhir as $key =>$value)
         <?php
-        $maxfpis = [];
-        $minfniis = [];
+
 
         $fpis1 = $tfn['Very High'][0] * $value['test_ip_min'] / $Cj['Cj'];
         $fpis2 = $tfn['Very High'][1] * $value['total_test_ip'] * 1/3 / $Cj['Cj'];
         $fpis3 = $tfn['Very High'][2] * $value['test_ip_max'] / $Cj['Cj'];
 
-        $fnis1 = $tfn['Very Low'][0] * $Aj['Aj'] / $value['test_perilaku_min'];
-        $fnis2 = $tfn['Very Low'][1] * $Aj['Aj'] / $value['total_test_perilaku'] * 1/3;
-        $fnis3 = $tfn['Very Low'][2] * $Aj['Aj'] / $value['test_prilaku_max'];
+        $fnis1 = $tfn['Very Low'][0] * $Aj['Aj'] / $value['test_prilaku_max'];
+        $fnis2 = $tfn['Very Low'][1] * ($Aj['Aj'] / ($value['total_test_perilaku'] * 1/3));
+        $fnis3 = $tfn['Very Low'][2] * $Aj['Aj'] / $value['test_perilaku_min'];
 
 
         if ((!isset($maxfpis[$key]["FPIS_MAX1"])) || ($maxfpis[$key]["FPIS_MAX1"] > $fpis1))
@@ -81,9 +82,9 @@
           $fnis_prilaku = min($minfnis);
           ?>
 
-  <table class="table table-striped table-hover">
+  <!-- <table class="table table-striped table-hover">
     <thead>
-      <!-- <tr>
+      <tr>
         <th>Nama</th>
         <th>FPIS IPK</th>
         <th>FPIS Prilaku</th>
@@ -92,13 +93,13 @@
         <th>d*</th>
         <th>d&macr;</th>
         <th>CCi</th>
-      </tr> -->
+      </tr>
     </thead>
     <tbody>
-
+    <tr> -->
       @foreach($hasilAkhir as $key => $value)
       <?php $b = null; ?>
-      <tr>
+
         <?php
         $fpis1 = pow($tfn['Very High'][0] * $value['test_ip_min'] / $Cj['Cj'] - $fpis_ip['FPIS_MAX1'], 2);
         $fpis2 = pow($tfn['Very High'][1] * $value['total_test_ip'] * 1/3 / $Cj['Cj'] - $fpis_ip['FPIS_MAX2'], 2);
@@ -132,15 +133,16 @@
         <?php $dFNIS = $totalIP_fnis + $totalpri; ?>
         <!-- <td>{{$dFNIS}}</td> -->
         <?php $Cci = $dFNIS / ($dFNIS + $dFPIS); ?>
-        <!-- <td>{{$Cci}}</td> -->
-      </tr>
+        <!-- <td>{{$Cci}}</td>
+        </tr> -->
       <?php $Ccii [] = $Cci ?>
       <?php $collection_Cci = $Ccii; ?>
       <?php $nama[] = $key; ?>
       <?php $nama2 = $nama; ?>
       @endforeach
+<!--
   </tbody>
-  </table>
+  </table> -->
 
 
 
@@ -156,22 +158,20 @@
     <tbody>
       <?php
       $combineData = array_combine($nama2, $collection_Cci);
-
       arsort($combineData);
-
-
       // $krt = array_slice($combineData, 0, 20);
       $i = 1;
-
      ?>
-      @foreach($combineData as $key => $value)
+     <?php $a = array_slice($combineData, 0, 20); ?>
+      @foreach($a as $key => $value)
       <tr>
         <td>{{$i++}}</td>
         <td>{{$key}}</td>
         <td>{{$value}}</td>
-
+        <td></td>
       </tr>
       @endforeach
     </tbody>
   </table>
+
 </div>

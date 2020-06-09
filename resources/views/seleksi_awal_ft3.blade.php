@@ -49,11 +49,11 @@
       <tr>
         <td>{{$key}}</td>
         <td>{{$value['test_ip_min'] / $Cj['Cj'] }}</td>
-        <td>{{$value['total_test_ip'] * 1/3 / $Cj['Cj'] }}</td>
+        <td>{{($value['total_test_ip'] * 1/3) / $Cj['Cj'] }}</td>
         <td>{{$value['test_ip_max'] / $Cj['Cj'] }}</td>
 
         <td>{{$Aj['Aj'] / $value['test_prilaku_max']}}</td>
-        <td>{{$Aj['Aj'] / $value['total_test_perilaku'] * 1/3}}</td>
+        <td>{{$Aj['Aj'] / ($value['total_test_perilaku'] * 1/3)}}</td>
         <td>{{$Aj['Aj'] / $value['test_perilaku_min']}}</td>
 
 
