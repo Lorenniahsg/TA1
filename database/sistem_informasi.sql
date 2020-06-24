@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2020 at 10:56 AM
+-- Generation Time: Jun 24, 2020 at 05:13 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -543,8 +543,6 @@ INSERT INTO `adak_registrasi` (`dim_id`, `ta`, `sem_ta`, `nr`, `status_akhir_reg
 (2322, 2017, 2, 2.34, 'Aktif'),
 (2322, 2018, 1, 2.73, 'Aktif'),
 (2322, 2018, 2, 2.95, 'Aktif'),
-(2323, 2017, 1, 2.83, 'Aktif'),
-(2323, 2017, 2, 0.00, 'Aktif'),
 (2325, 2017, 1, 2.44, 'Aktif'),
 (2325, 2017, 2, 2.13, 'Aktif'),
 (2325, 2018, 1, 2.27, 'Aktif'),
@@ -1037,11 +1035,6 @@ INSERT INTO `adak_registrasi` (`dim_id`, `ta`, `sem_ta`, `nr`, `status_akhir_reg
 (2470, 2017, 2, 2.15, 'Aktif'),
 (2470, 2018, 1, 1.75, 'Aktif'),
 (2470, 2018, 2, 2.44, 'Aktif'),
-(2471, 2017, 1, 2.65, 'Aktif'),
-(2471, 2017, 2, 2.48, 'Aktif'),
-(2471, 2018, 1, 2.73, 'Aktif'),
-(2471, 2018, 2, 2.60, 'Aktif'),
-(2471, 2018, 1, 0.00, 'Aktif'),
 (2472, 2017, 1, 2.10, 'Aktif'),
 (2472, 2017, 2, 1.95, 'Aktif'),
 (2472, 2018, 1, 1.95, 'Aktif'),
@@ -1521,7 +1514,11 @@ INSERT INTO `adak_registrasi` (`dim_id`, `ta`, `sem_ta`, `nr`, `status_akhir_reg
 (2332, 2017, 1, 2.39, 'aktif'),
 (2332, 2017, 2, 2.18, 'aktif'),
 (2332, 2018, 1, 2.45, 'aktif'),
-(2332, 2018, 2, 2.73, 'aktif');
+(2332, 2018, 2, 2.73, 'aktif'),
+(2471, 2017, 1, 0.00, 'aktif'),
+(2471, 2017, 2, 1.00, 'aktif'),
+(2471, 2018, 1, 4.00, 'aktif'),
+(2471, 2018, 2, 7.00, 'aktif');
 
 -- --------------------------------------------------------
 
@@ -3176,7 +3173,6 @@ INSERT INTO `dimx_dim` (`dim_id`, `nim`, `nama`, `thn_masuk`, `dari_jlh_anak`, `
 (2320, '11S17058', 'Sepriana Carolina', 2017, 3, 10000000, 9, 0, 7, 8, 'Pegawai BUMN ( TELKOM )', 8, 'Ibu Rumah Tangga'),
 (2321, '11S17061', 'Geby Chrysania Purba', 2017, 3, 5000000, 9, 1000000, 7, 5, NULL, 8, NULL),
 (2322, '11S17065', 'Grace Margaret Sihite', 2017, 3, 6000000, 9, 0, 7, 1, 'Dosen Kopertis', 8, 'Ibu Rumah Tangga'),
-(2323, '11S17007', 'Arya Kamandanu Pasaribu', 2017, 4, 1000000, 7, 2500000, 8, 7, 'Petani Kopi', 2, 'Guru SD'),
 (2325, '11S17018', 'D. Welvin Hutagalung', 2017, 5, 4600000, 8, 4200000, 8, 1, NULL, 1, 'Pengawas SD'),
 (2326, '11S17023', 'Immanuel Julius Adik Putra Siburian', 2017, 4, 6000000, 9, 1500000, 8, 8, 'Dosen', 2, 'Guru swasta'),
 (2327, '11S17022', 'Febian Joshua Reynara', 2017, 3, 3000000, 8, 2000000, 8, 5, 'Pedagang', 5, 'Pedagang'),
@@ -3516,6 +3512,19 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `seleksiawal`
+--
+
+CREATE TABLE `seleksiawal` (
+  `id` int(11) NOT NULL,
+  `dim_id` int(50) NOT NULL,
+  `nama` varchar(200) NOT NULL,
+  `nilaiAwal` int(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `skkm`
 --
 
@@ -3530,26 +3539,8 @@ CREATE TABLE `skkm` (
 --
 
 INSERT INTO `skkm` (`id`, `dim_id`, `skkm`) VALUES
-(2, 2557, 2.00),
-(3, 2579, 3.00),
-(4, 2584, 4.00),
-(5, 2560, 5.00),
-(6, 2542, 6.00),
-(7, 2601, 7.00),
-(8, 2606, 8.00),
-(9, 2608, 9.00),
-(10, 2586, 1.00),
-(11, 2605, 2.00),
-(12, 2598, 3.00),
-(13, 2599, 4.00),
-(14, 2566, 5.00),
-(15, 2585, 6.00),
-(16, 2603, 7.00),
-(17, 2571, 8.00),
-(18, 2593, 9.00),
-(19, 2602, 1.00),
-(20, 2594, 2.00),
-(22, 2514, 1.00);
+(58, 2514, 12.00),
+(59, 2376, 5.00);
 
 -- --------------------------------------------------------
 
@@ -3602,6 +3593,12 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
+-- Indexes for table `seleksiawal`
+--
+ALTER TABLE `seleksiawal`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `skkm`
 --
 ALTER TABLE `skkm`
@@ -3644,10 +3641,16 @@ ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `seleksiawal`
+--
+ALTER TABLE `seleksiawal`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `skkm`
 --
 ALTER TABLE `skkm`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `users`
