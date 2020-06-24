@@ -54,14 +54,18 @@
          ?>
           @foreach($semua as $s)
         <tr>
-          <td><?php echo $no++; ?></td>
-          <td>{{$s['nama']}}</td>
-          <td>{{$s['ta']}}</td>
-          <td>{{$s['sem_ta']}}</td>
-          <td>{{$s['nr']}}</td>
-          <td>
+
+
+
+            @if ($s['ta']==2017 && $s['sem_ta'] == 2 || $s['sem_ta'] == 1)
+            <td><?php echo $no++; ?></td>
+            <td>{{$s['nama']}}</td>
+            <td>{{$s['ta']}}</td>
+            <td>{{$s['sem_ta']}}</td>
+            <td>{{$s['nr']}}</td>
+            <td>
             <!-- Veery High -->
-            @if( $s['nr'] >= 3.30 && $s['nr'] <= 4.00 )
+            @if( $s['nr'] >= 3.50 && $s['nr'] <= 4.00 )
             @foreach(array_keys($tfn) as $key => $value)
               @if($key == 0)
                 {{$value . '('}}
@@ -74,7 +78,7 @@
               {{')'}}
 
             <!-- High -->
-            @elseif($s['nr'] >= 2.50 && $s['nr'] <=3.29)
+            @elseif($s['nr'] >= 3.00 && $s['nr'] <=3.49)
               @foreach(array_keys($tfn) as $key => $value)
                 @if($key == 1)
                   {{$value . '('}}
@@ -87,7 +91,7 @@
                   {{')'}}
 
             <!-- Average  -->
-            @elseif( $s['nr'] >= 1.70 && $s['nr'] <= 2.49)
+            @elseif( $s['nr'] >= 2.00 && $s['nr'] <= 2.99)
               @foreach(array_keys($tfn) as $key => $value)
                 @if($key == 2)
                   {{$value . '('}}
@@ -101,7 +105,7 @@
               {{')'}}
 
             <!-- Low -->
-            @elseif( $s['nr'] >= 0.90 && $s['nr'] <=1.69)
+            @elseif( $s['nr'] >= 1.00 && $s['nr'] <=1.99)
             @foreach(array_keys($tfn) as $key => $value)
               @if($key == 3)
                 {{$value . '('}}
@@ -114,7 +118,7 @@
 
               {{')'}}
             <!-- Very Low -->
-            @elseif($s['nr'] >= 0.0 && $s['nr'] <=0.89)
+            @elseif($s['nr'] >= 0.0 && $s['nr'] <=0.99)
             @foreach(array_keys($tfn) as $key => $value)
               @if($key == 4)
                 {{$value . '('}}
@@ -154,12 +158,12 @@
             <!-- Very Low -->
         @if($s['akumulasi_skor'] >=0 && $s['akumulasi_skor'] <=5)
           @foreach(array_keys($tfn) as $key => $value)
-            @if($key == 4)
+            @if($key == 0)
               {{$value . '('}}
             @endif
           @endforeach
 
-          @foreach($tfn['Very Low'] as $a)
+          @foreach($tfn['Very High'] as $a)
             {{$a}}
           @endforeach
             {{')'}}
@@ -167,12 +171,12 @@
           <!-- Low -->
         @elseif( $s['akumulasi_skor'] >=6 && $s['akumulasi_skor'] <=10)
           @foreach(array_keys($tfn) as $key => $value)
-            @if($key == 3)
+            @if($key == 1)
               {{$value . '('}}
             @endif
           @endforeach
 
-          @foreach($tfn['Low'] as $a)
+          @foreach($tfn['High'] as $a)
             {{$a}}
           @endforeach
             {{')'}}
@@ -193,12 +197,12 @@
           <!-- High -->
         @elseif( $s['akumulasi_skor'] >=16 && $s['akumulasi_skor'] <=25)
           @foreach(array_keys($tfn) as $key => $value)
-            @if($key == 1)
+            @if($key == 3)
               {{$value . '('}}
             @endif
           @endforeach
 
-          @foreach($tfn['High'] as $a)
+          @foreach($tfn['Low'] as $a)
             {{$a}}
           @endforeach
             {{')'}}
@@ -206,18 +210,19 @@
           <!-- Very High -->
         @elseif( $s['akumulasi_skor'] >=26 && $s['akumulasi_skor'] <= 100)
           @foreach(array_keys($tfn) as $key => $value)
-            @if($key == 0)
+            @if($key == 4)
               {{$value . '('}}
             @endif
           @endforeach
 
-          @foreach($tfn['Very High'] as $a)
+          @foreach($tfn['Very Low'] as $a)
             {{$a}}
           @endforeach
             {{')'}}
 
         @else
           {{ 'data tidak terdefenisi' }}
+        @endif
         @endif
           </td>
 

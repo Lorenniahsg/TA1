@@ -118,6 +118,7 @@ class SKKMController extends Controller
             }
         }
 
+
         foreach ($query as $item) {
           $normalisasi = number_format(($item['IPK'] / $max), 2);
           if($min>0){
@@ -142,6 +143,7 @@ class SKKMController extends Controller
 
         $combineData = array_combine($arraySkkm, $arrayMahasiswa);
         krsort($combineData);
+      
         $krt = array_slice($combineData, 0, 10);
 
         return view('sawPage', ['vdata' => $saw])->with(compact('krt'));

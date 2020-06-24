@@ -36,6 +36,7 @@
   <table class="table table-striped table-hover">
     <thead>
       <tr>
+        <th>No</th>
         <th>Nama</th>
         <th>Min Test IP</th>
         <th>Total Test Ip</th>
@@ -46,8 +47,10 @@
       </tr>
     </thead>
     <tbody>
+      <?php $no=1; ?>
       @foreach($hasilAkhir as $key=>$value)
       <tr>
+        <td><?= $no++; ?></td>
         <td>{{$key}}</td>
         <td>{{$value['test_ip_min']}}</td>
         <td>{{$value['total_test_ip'] * 1/3}}</td>

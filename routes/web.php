@@ -26,6 +26,7 @@ Route::get('/jarak_FPIS_FNIS','Controller@jarak_FPIS_FNIS');
 Route::get('/hasilAwal','Controller@hasilAwal');
 
 
+
 Route::get('sawPage','Controller@sawPage');
 Route::get('fuzzytopsisPage','PageController@fuzzytopsisPage');
 

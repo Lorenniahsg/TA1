@@ -99,16 +99,16 @@
     <tr>
       @foreach($hasilAkhir as $key => $value)
       <?php $b = null; ?>
-
         <?php
+
         $fpis1 = pow($tfn['Very High'][0] * $value['test_ip_min'] / $Cj['Cj'] - $fpis_ip['FPIS_MAX1'], 2);
         $fpis2 = pow($tfn['Very High'][1] * $value['total_test_ip'] * 1/3 / $Cj['Cj'] - $fpis_ip['FPIS_MAX2'], 2);
         $fpis3 = pow($tfn['Very High'][2] * $value['test_ip_max'] / $Cj['Cj'] - $fpis_ip['FPIS_MAX3'], 2);
         $totalIP_fpis = sqrt(1/3 * ($fpis1 + $fpis2 + $fpis3));
 
-        $fpis11 = pow($tfn['Very High'][0] * $value['test_ip_min'] / $Cj['Cj'] - $fpis_prilaku['FNIS_MIN1'], 2);
-        $fpis22 = pow($tfn['Very High'][1] * $value['total_test_ip'] * 1/3 / $Cj['Cj'] - $fpis_prilaku['FNIS_MIN2'], 2);
-        $fpis33 = pow($tfn['Very High'][2] * $value['test_ip_max'] / $Cj['Cj'] - $fpis_prilaku['FNIS_MIN3'], 2);
+        $fpis11 = pow($tfn['Very Low'][2] *  $Aj['Aj'] / $value['test_perilaku_min'] - $fpis_prilaku['FNIS_MIN1'], 2);
+        $fpis22 = pow($tfn['Very Low'][1] * $Aj['Aj'] / (1/3 * $value['total_test_perilaku']) - $fpis_prilaku['FNIS_MIN2'], 2);
+        $fpis33 = pow($tfn['Very Low'][0] *  $Aj['Aj'] / $value['test_prilaku_max'] - $fpis_prilaku['FNIS_MIN3'], 2);
         $total_prilaku_fpis = sqrt(1/3 * ($fpis11 + $fpis22 + $fpis33));
 
 
@@ -119,9 +119,10 @@
         $totalIP_fnis = sqrt(1/3 * ($fnis1 + $fnis2 + $fnis3));
 
         $fnis11 = pow($tfn['Very Low'][0] * $Aj['Aj'] / $value['test_perilaku_min'] - $fnis_prilaku['FNIS_MIN1'],2);
-        $fnis22 = pow($tfn['Very Low'][1] * $Aj['Aj'] / $value['total_test_perilaku'] * 1/3 - $fnis_prilaku['FNIS_MIN2'] ,2);
+        $fnis22 = pow($tfn['Very Low'][1] * $Aj['Aj'] / (1/3 * $value['total_test_perilaku'])  - $fnis_prilaku['FNIS_MIN2'] ,2);
         $fnis33 = pow($tfn['Very Low'][2] * $Aj['Aj'] / $value['test_prilaku_max'] - $fnis_prilaku['FNIS_MIN3'],2);
         $totalpri = sqrt( 1/3 * ($fnis11 + $fnis22 + $fnis33));
+
         ?>
         <td>{{$key}}</td>
         <td>{{$totalIP_fpis}}</td>
