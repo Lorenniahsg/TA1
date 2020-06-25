@@ -25,13 +25,11 @@
       <a class="nav-link" href="{{ url('test2') }}" role="tab">Seleksi  Mahasiswa</a>
     </li> -->
   </ul>
-<a class="btn btn-primary float-right col-sm-6" href="{{ url('hasilAwal')}}">Hasil Awal</a>
+<a class="btn btn-primary float-right col-sm-6" href="{{ url('hasilAkhirFT')}}">Hasil Akhir</a>
 
   <h1>Jarak FPIS dan FNIS</h1>
 
   <br><br>
-
-
   <table class="table table-striped table-hover">
     <thead>
       <tr>
@@ -45,7 +43,8 @@
       <?php
       $i = 1;
       ?>
-      @foreach($krt as $key => $value)
+
+      @foreach($krt2 as $key => $value)
       <tr>
         <td>{{$i++}}</td>
         <td>{{$value['nama']}}</td>
@@ -115,7 +114,7 @@
                               </button>
                           </div>
                           <div class="modal-body">
-                          <form method="post" action="{{ URL('/Skkm/edit_skkm/'. $value->skkm_id)}}" id=editform>
+                          <form method="post" action="{{ URL('/Skkm/edit_skkm/'. $value->skkm_id)}}" id='editform'>
                           <!-- {{ method_field('POST') }} -->
                           {{csrf_field()}}
                           <div class="form-group">
@@ -162,7 +161,7 @@
                       </div>
                       </div>
       @endforeach
+
     </tbody>
   </table>
-
 </div>

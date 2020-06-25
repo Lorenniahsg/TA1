@@ -24,6 +24,7 @@ Route::get('/PBHNFDM','Controller@PBHNFDM');
 Route::get('/FPIS_FNIS','Controller@FPIS_FNIS');
 Route::get('/jarak_FPIS_FNIS','Controller@jarak_FPIS_FNIS');
 Route::get('/hasilAwal','Controller@hasilAwal');
+Route::get('/hasilAkhirFT','Controller@hasilAkhirFT');
 
 
 
@@ -43,7 +44,10 @@ Route::get('/Mahasiswa', 'Controller@Mahasiswa');
 
 Route::get('Skkm/route_tambah_skkm', 'SKKMController@route_tambah_skkm');
 Route::post('/Skkm/store_skkm','SKKMController@store_skkm');
+
 Route::post('/Skkm/edit_skkm/{id}', 'SKKMController@edit_skkm');
+Route::post('/Skkm/edit_skkm_ft/{id}', 'SKKMController@edit_skkm_ft');
+
 Route::post('/Skkm/delete_skkm/{id}', 'SKKMController@delete_skkm');
 Route::get('/Skkm/hasil', 'SKKMController@hasil_skkm');
 

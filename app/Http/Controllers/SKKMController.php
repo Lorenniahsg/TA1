@@ -36,8 +36,8 @@ class SKKMController extends Controller
     $this->validate($request,[
       'skkm'=>'required'
     ]);
-
     $skkm_ = skkm::find($id);
+
     $skkm_->skkm = $request->input('skkm');
 
     $skkm_->save();
@@ -69,6 +69,7 @@ class SKKMController extends Controller
 
     return view('sawPage',['vdata'=>$skkm_,'krt'=>$data]);
   }
+
 
   public function hasil_skkm()
     {
@@ -143,7 +144,7 @@ class SKKMController extends Controller
 
         $combineData = array_combine($arraySkkm, $arrayMahasiswa);
         krsort($combineData);
-      
+
         $krt = array_slice($combineData, 0, 10);
 
         return view('sawPage', ['vdata' => $saw])->with(compact('krt'));
