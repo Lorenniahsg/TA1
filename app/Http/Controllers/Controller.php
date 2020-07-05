@@ -323,7 +323,7 @@ class Controller extends BaseController
 
           $key = array_column($data_mahasiswa, 'cci');
           array_multisort($key, SORT_DESC, $data_mahasiswa);
-          $krt2 = array_slice($data_mahasiswa, 0, 50);
+          $krt2 = array_slice($data_mahasiswa, 0, 20);
 
           return view('seleksi_awal_ft7',['krt2'=>$krt2]);
     }
