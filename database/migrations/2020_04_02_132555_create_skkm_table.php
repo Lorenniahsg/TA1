@@ -18,7 +18,7 @@ class CreateSkkmTable extends Migration
             $table->bigInteger('dim_id')->unsigned();
             $table->float('skkm');
             $table->foreign('dim_id')->references('dim_id')->on('dimx_dim')->onDelete('cascade');
-            
+
         });
     }
 

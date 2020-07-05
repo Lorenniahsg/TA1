@@ -33,10 +33,9 @@ Route::get('fuzzytopsisPage','PageController@fuzzytopsisPage');
 
 Route::get('/PenilaianFT', 'PageController@PenilaianFT');
 
-Route::get('/Penilaian', 'Controller@Penilaian');
+Route::get('/PenilaianSaw', 'Controller@Penilaian');
+Route::get('/hasilAkhirSaw', 'Controller@hasilAkhirSaw');
 
-
-Route::get('/Skkm', 'SKKMController@Skkm');
 
 
 Route::get('/Mahasiswa', 'Controller@Mahasiswa');

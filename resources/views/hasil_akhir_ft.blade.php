@@ -10,11 +10,26 @@
 @endsection
 <br><br><br><br><br>
 
-<table class="table table-striped table-hover">
+<div class="container">
+  <table class="table table-striped table-hover">
     <thead>
       <th>No</th>
+      <th>Nama</th>
+      <th>Nilai</th>
     </thead>
     <tbody>
-      <td></td>
+      <tr>
+        <?php $no=1; ?>
+        @foreach($hasilFinals as $key => $value)
+        <td><?= $no++; ?></td>
+        <td>
+          {{$key}}
+        </td>
+        <td>
+          {{$value}}
+        </td>
+      </tr>
+      @endforeach
     </tbody>
-</table>
+  </table>
+</div>

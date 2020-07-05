@@ -1,54 +1,46 @@
 @extends('template')
-@section('title', 'Fuzzy Topsis')
+@section('title', 'SAW')
 @section('intro-header')
-
-  <!-- Header -->
-  <header class="intro-header text-black">
-
-  </header>
-  <!-- END : Header -->
+    <!-- Header -->
+    <header class="intro-header text-black">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    </header>
+    <!-- END : Header -->
 @endsection
-<br><br><br><br><br>
-
+<br><br><br><br>
 <div class="container">
+  <h1>SAW</h1>
   <ul class="nav nav-tabs" role="tablist">
-    <!-- <li class="nav-item">
-      <a class="nav-link" href="{{ url('MahasiswaFT') }}" role="tab">Data Mahasiswa</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{{ url('PenilaianFT') }}" role="tab">Data Penilaian</a>
-    </li> -->
-    <li class="nav-item">
-      <a class="nav-link" href="{{ url('PerhitunganFT') }}" role="tab">Data  Mahasiswa</a>
-    </li>
-    <!-- <li class="nav-item">
-      <a class="nav-link" href="{{ url('test2') }}" role="tab">Seleksi  Mahasiswa</a>
-    </li> -->
+          <li class="nav-item left">
+          <a class="nav-link {{ request()->is('dimx_dim') ? 'active': null }}" href="{{ url('dimx_dim') }}" role="tab">Import Data Mahasiswa</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link {{ request()->is('adak_registrasi') ? 'active': null }}" href="{{ url('adak_registrasi') }}" role="tab">Import Data IP</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link {{ request()->is('askm_dim_penilaian') ? 'active': null }}" href="{{ url('askm_dim_penilaian') }}" role="tab">Import Data Prilaku</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link {{ request()->is('Mahasiswa') ? 'active': null }}" href="{{ url('Mahasiswa') }}"
+             role="tab">Seleksi Mahasiswa</a>
+      </li>
   </ul>
-<a class="btn btn-primary float-right col-sm-6" href="{{ url('hasilAkhirFT')}}">Hasil Akhir</a>
-
-  <h1>Jarak FPIS dan FNIS</h1>
-
-  <br><br>
-  <table class="table table-striped table-hover">
+  <h2>Hasil Seleksi Awal</h2>
+<a href="{{ url('hasilAkhirSaw') }}" class="btn btn-info btn-md">Hasil Akhir</a>
+  <table class="table ">
     <thead>
-      <tr>
-        <th>No</th>
-        <th>Nama</th>
-        <th>Nilai</th>
-        <th>Action</th>
-      </tr>
+      <th>No</th>
+      <th>Nama</th>
+      <th>Nilai Awal</th>
+      <th>Action</th>
     </thead>
     <tbody>
-      <?php
-      $i = 1;
-      ?>
-
-      @foreach($krt2 as $key => $value)
       <tr>
-        <td>{{$i++}}</td>
+        <?php $no=1; ?>
+        @foreach($data_20_besar as $value)
+        <td><?= $no++; ?></td>
         <td>{{$value['nama']}}</td>
-        <td>{{$value['cci']}}</td>
+        <td>{{$value['hasil_awal_saw']}}</td>
         <td>
             @if($value['skkm'] == null)
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal<?php echo $value['dim_id']; ?>">
@@ -160,8 +152,7 @@
                           </div>
                       </div>
                       </div>
-      @endforeach
-
+        @endforeach()
     </tbody>
   </table>
 </div>

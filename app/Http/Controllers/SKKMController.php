@@ -142,10 +142,20 @@ class SKKMController extends Controller
             $arrayMahasiswa[] = $item;
         }
 
-        $combineData = array_combine($arraySkkm, $arrayMahasiswa);
-        krsort($combineData);
 
-        $krt = array_slice($combineData, 0, 10);
+        foreach ($data_mahasiswa as $key => &$value) {
+          $value["cci"] = $Cci[$key];
+        }
+
+
+        // uasort($data_mahasiswa, function($a, $b){
+        //   return $a["cci"] <=> $b["cci"];
+        // });
+
+        $key = array_column($arrayMahasiswa, 'cci');
+        array_multisort($key, SORT_DESC, $arrayMahasiswa);
+        $krt = array_slice($arrayMahasiswa, 0, 20);
+
 
         return view('sawPage', ['vdata' => $saw])->with(compact('krt'));
     }
