@@ -2,15 +2,8 @@
 @section('title', 'Fuzzy Topsis')
 @section('intro-header')
 
-  <!-- Header -->
-  <header class="intro-header text-black">
-
-  </header>
-  <!-- END : Header -->
-@endsection
-<br><br><br><br><br>
-
 <div class="container">
+  <h1>Calon Mahasiswa Teladan</h1>
   <table class="table table-striped table-hover">
     <thead>
       <th>No</th>
@@ -33,3 +26,4 @@
     </tbody>
   </table>
 </div>
+@endsection

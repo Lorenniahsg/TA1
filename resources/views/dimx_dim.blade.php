@@ -22,10 +22,6 @@
             <li class="nav-item">
             <a class="nav-link {{ request()->is('askm_dim_penilaian') ? 'active': null }}" href="{{ url('askm_dim_penilaian') }}" role="tab">Import Data Prilaku</a>
             </li>
-            <li class="nav-item">
-            <a class="nav-link {{ request()->is('Mahasiswa') ? 'active': null }}" href="{{ url('Mahasiswa') }}"
-               role="tab">Seleksi Mahasiswa</a>
-        </li>
     </ul>
 	<div class="container">
 		<center>

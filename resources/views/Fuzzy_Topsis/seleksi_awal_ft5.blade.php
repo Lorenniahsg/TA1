@@ -2,34 +2,12 @@
 @section('title', 'Fuzzy Topsis')
 @section('intro-header')
 
-  <!-- Header -->
-  <header class="intro-header text-black">
-
-  </header>
-  <!-- END : Header -->
-@endsection
-<br><br><br><br><br>
-
 <div class="container">
-  <ul class="nav nav-tabs" role="tablist">
-    <!-- <li class="nav-item">
-      <a class="nav-link" href="{{ url('MahasiswaFT') }}" role="tab">Data Mahasiswa</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{{ url('PenilaianFT') }}" role="tab">Data Penilaian</a>
-    </li> -->
-    <li class="nav-item">
-      <a class="nav-link" href="{{ url('PerhitunganFT') }}" role="tab">Data  Mahasiswa</a>
-    </li>
-    <!-- <li class="nav-item">
-      <a class="nav-link" href="{{ url('test2') }}" role="tab">Seleksi  Mahasiswa</a>
-    </li> -->
-  </ul>
-<a class="btn btn-primary float-right col-sm-6" href="{{ url('jarak_FPIS_FNIS')}}">Hitung jarak FPIS dan FNIS</a>
-
+  <h1>Fuzzy Topsis</h1>
+  <hr>
+<a class="btn btn-primary float-right" href="{{ url('jarak_FPIS_FNIS')}}">Hitung jarak FPIS dan FNIS</a>
   <h1>Hasil FPIS dan FNIS</h1>
 
-  <br><br>
   <table class="table table-striped table-hover">
     <thead>
       <tr>
@@ -111,12 +89,10 @@
 
 <br><br>
   <table border="1" class="table">
-
     <thead class="thead-dark">
       <tr>
         <th scope="col"><b>FPIS IP A*</b></th>
         <th scope="col"><b>FPIS Prilaku A*</b></th>
-
       </tr>
     </thead>
     <tbody>
@@ -162,3 +138,4 @@
     </tbody>
   </table>
 </div>
+@endsection

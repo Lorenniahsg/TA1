@@ -2,34 +2,11 @@
 @section('title', 'Fuzzy Topsis')
 @section('intro-header')
 
-  <!-- Header -->
-  <header class="intro-header text-black">
-
-  </header>
-  <!-- END : Header -->
-@endsection
-<br><br><br><br><br>
-
 <div class="container">
-  <ul class="nav nav-tabs" role="tablist">
-    <!-- <li class="nav-item">
-      <a class="nav-link" href="{{ url('MahasiswaFT') }}" role="tab">Data Mahasiswa</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{{ url('PenilaianFT') }}" role="tab">Data Penilaian</a>
-    </li> -->
-    <li class="nav-item">
-      <a class="nav-link" href="{{ url('PerhitunganFT') }}" role="tab">Data  Mahasiswa</a>
-    </li>
-    <!-- <li class="nav-item">
-      <a class="nav-link" href="{{ url('test2') }}" role="tab">Seleksi  Mahasiswa</a>
-    </li> -->
-  </ul>
+  <h1>Fuzzy Topsis</h1>
+  <hr>
 <a class="btn btn-primary float-right col-sm-6" href="{{ url('hasilAkhirFT')}}">Hasil Akhir</a>
-
   <h1>Jarak FPIS dan FNIS</h1>
-
-  <br><br>
   <table class="table table-striped table-hover">
     <thead>
       <tr>
@@ -161,7 +138,7 @@
                       </div>
                       </div>
       @endforeach
-
     </tbody>
   </table>
 </div>
+@endsection

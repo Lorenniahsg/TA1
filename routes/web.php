@@ -62,3 +62,5 @@ Route::post('/askm_dim_penilaian/import_excel', 'DimPenilaianController@import_e
 Route::get('/dimx_dim','DimxDimController@index');
 Route::get('/dimx_dim/export_excel','DimxDimController@export_excel');
 Route::post('/dimx_dim/import_excel', 'DimxDimController@import_excel');
+
+Route::get('/perbandingan','PageController@perbandingan');

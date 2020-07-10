@@ -1,31 +1,12 @@
 @extends('template')
 @section('title', 'SAW')
 @section('intro-header')
-    <!-- Header -->
-    <header class="intro-header text-black">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    </header>
-    <!-- END : Header -->
-@endsection
-<br><br><br><br>
+
 <div class="container">
   <h1>SAW</h1>
-  <ul class="nav nav-tabs" role="tablist">
-          <li class="nav-item left">
-          <a class="nav-link {{ request()->is('dimx_dim') ? 'active': null }}" href="{{ url('dimx_dim') }}" role="tab">Import Data Mahasiswa</a>
-          </li>
-          <li class="nav-item">
-          <a class="nav-link {{ request()->is('adak_registrasi') ? 'active': null }}" href="{{ url('adak_registrasi') }}" role="tab">Import Data IP</a>
-          </li>
-          <li class="nav-item">
-          <a class="nav-link {{ request()->is('askm_dim_penilaian') ? 'active': null }}" href="{{ url('askm_dim_penilaian') }}" role="tab">Import Data Prilaku</a>
-          </li>
-          <li class="nav-item">
-          <a class="nav-link {{ request()->is('Mahasiswa') ? 'active': null }}" href="{{ url('Mahasiswa') }}"
-             role="tab">Seleksi Mahasiswa</a>
-      </li>
-  </ul>
+  <hr>
   <h2>Hasil Seleksi Awal</h2>
+  <hr>
 <a href="{{ url('hasilAkhirSaw') }}" class="btn btn-info btn-md">Hasil Akhir</a>
   <table class="table ">
     <thead>
@@ -33,6 +14,8 @@
       <th>Nama</th>
       <th>Nilai Awal</th>
       <th>Action</th>
+      <th></th>
+      <th></th>
     </thead>
     <tbody>
       <tr>
@@ -124,7 +107,6 @@
                       </div>
                       </div>
 
-
                        <!--delete modal -->
                        <div class="modal fade" id="deleteModal<?php echo $value['dim_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog" role="document">
@@ -156,3 +138,4 @@
     </tbody>
   </table>
 </div>
+@endsection

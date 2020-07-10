@@ -23,7 +23,10 @@ class PageController extends Controller
       return view('fuzzytopsisPage',['krt_ft'=>$data,'vdata'=>$kriteria_ft]);
     }
     public function Perbandingan(){
-      return view('perbandingan');
+      $ft = $this->hasilAkhirFT();
+      $saw = $this->hasilAkhirSAW();
+
+      return view('perbandingan',['Fuzzy_Topsis'=>$ft['hasilFinals'],'saw'=>$saw['hasil_akhir_saw']]);
     }
 
     public function Kriteria()
@@ -53,9 +56,6 @@ class PageController extends Controller
             ->groupBy('dimx_dim.dim_id')
             ->get();
 
-
-
-
         $VeryHigh = [7,9,9];
         $High = [5,7,9];
         $Average = [3,5,7];
@@ -74,18 +74,16 @@ class PageController extends Controller
             if($data['akumulasi_skor'] >=6 && $data['akumulasi_skor'] <=10){ $data['akumulasi_skor'] = $Low;}
             if($data['akumulasi_skor'] <=5){ $data['akumulasi_skor'] = $VeryLow;}
         }
-
-
-
-
       return view('fuzzytopsisPage',['krt'=>$query,'vdata'=>$ft]);
     }
+
 
     public function PerhitunganFT(){
       $kriteria_ft = kriteria::all();
       $data = $this->Mahasiswa();
       return view('fuzzytopsisPage',['krt_ft'=>$data,'vdata'=>$kriteria_ft]);
     }
+
 
     public function edit_ft(){
       $kriteria_ft = kriteria::all();

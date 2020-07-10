@@ -2,38 +2,11 @@
 @section('title', 'Fuzzy Topsis')
 @section('intro-header')
 
-  <!-- Header -->
-  <header class="intro-header text-black">
-
-  </header>
-  <!-- END : Header -->
-@endsection
-
-<br><br><br><br>
-
-
 <div class="container">
-  <ul class="nav nav-tabs" role="tablist">
-    <!-- <li class="nav-item">
-      <a class="nav-link" href="{{ url('MahasiswaFT') }}" role="tab">Data Mahasiswa</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{{ url('PenilaianFT') }}" role="tab">Data Penilaian</a>
-    </li> -->
-    <li class="nav-item">
-      <a class="nav-link" href="{{ url('PerhitunganFT') }}" role="tab">Data  Mahasiswa</a>
-    </li>
-    <!-- <li class="nav-item">
-      <a class="nav-link" href="{{ url('test2') }}" role="tab">Seleksi  Mahasiswa</a>
-    </li> -->
-  </ul>
-</div>
-
-
-
-<div class="container">
-  <h2>Daftar Mahasiswa</h2>
-<a class="btn btn-primary" href="{{ url('Seleksi_FT') }}">Seleksi Mahasiswa</a>
+<h1>Fuzzy Topsis</h1>
+<hr>
+<a class="btn btn-primary float-right" href="{{ url('Seleksi_FT') }}">Seleksi Mahasiswa</a>
+<h1>Daftar Mahasiswa</h1>
   <table class="table table-striped table-hover">
       <thead>
         <tr>
@@ -48,15 +21,9 @@
         </tr>
       </thead>
       <tbody>
-        <?php
-        $no=1;
-
-         ?>
+        <?php $no=1; ?>
           @foreach($semua as $s)
         <tr>
-
-
-
             @if ($s['ta']==2017 && $s['sem_ta'] == 2 || $s['sem_ta'] == 1)
             <td><?php echo $no++; ?></td>
             <td>{{$s['nama']}}</td>
@@ -225,11 +192,9 @@
         @endif
         @endif
           </td>
-
           @endforeach
-
           </tr>
       </tbody>
     </table>
-
 </div>
+@endsection

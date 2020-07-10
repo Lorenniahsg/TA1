@@ -27,6 +27,7 @@ class Controller extends BaseController
         return view('homepage');
     }
 
+
     public function Seleksi_FT()
     {
       $data = $this->PerhitunganFT();
@@ -34,8 +35,9 @@ class Controller extends BaseController
       $tfn = $data['tfn'];
 
       // $paginate = $this->paginate($hasilAkhir, 2);
-      return view("seleksi_awal_ft2",['semua'=>$data,'tfn'=>$tfn,'hasilAkhir'=>$hasilAkhir]);
+      return view("Fuzzy_Topsis.seleksi_awal_ft2",['tfn'=>$tfn,'hasilAkhir'=>$hasilAkhir]);
     }
+
 
     public function NFDM(){
       $data = $this->Seleksi_FT();
@@ -51,7 +53,6 @@ class Controller extends BaseController
       $Cij = $value['test_ip_max'];
       $Aij = $value['test_perilaku_min'];
 
-
       if ((!isset($Cj[$key]["Cj"])) || ($Cj[$key]["Cj"] > $Cij))
         {
           $Cj[$key]["Cj"] = $Cij;
@@ -64,8 +65,9 @@ class Controller extends BaseController
       $Cj = max($Cj);
       $Aj = min($Aj);
 
-      return view("seleksi_awal_ft3",['Aj'=>$Aj,'Cj'=>$Cj,'semua'=>$data,'tfn'=>$tfn,'hasilAkhir'=>$hasilAkhir]);
+      return view("Fuzzy_Topsis.seleksi_awal_ft3",['Aj'=>$Aj,'Cj'=>$Cj,'tfn'=>$tfn,'hasilAkhir'=>$hasilAkhir]);
     }
+
 
     public function PBHNFDM(){
       $data = $this->NFDM();
@@ -75,8 +77,9 @@ class Controller extends BaseController
       $hasilAkhir = $data['hasilAkhir'];
       $tfn = $data['tfn'];
 
-      return view("seleksi_awal_ft4",['Aj'=>$Aj,'Cj'=>$Cj,'semua'=>$data,'tfn'=>$tfn,'hasilAkhir'=>$hasilAkhir]);
+      return view("Fuzzy_Topsis.seleksi_awal_ft4",['Aj'=>$Aj,'Cj'=>$Cj,'tfn'=>$tfn,'hasilAkhir'=>$hasilAkhir]);
     }
+
 
     public function FPIS_FNIS(){
       $data = $this->PBHNFDM();
@@ -86,8 +89,9 @@ class Controller extends BaseController
       $hasilAkhir = $data['hasilAkhir'];
       $tfn = $data['tfn'];
 
-      return view("seleksi_awal_ft5",['Aj'=>$Aj,'Cj'=>$Cj,'semua'=>$data,'tfn'=>$tfn,'hasilAkhir'=>$hasilAkhir]);
+      return view("Fuzzy_Topsis.seleksi_awal_ft5",['Aj'=>$Aj,'Cj'=>$Cj,'tfn'=>$tfn,'hasilAkhir'=>$hasilAkhir]);
     }
+
 
     public function jarak_FPIS_FNIS(){
       $data = $this->FPIS_FNIS();
@@ -97,8 +101,9 @@ class Controller extends BaseController
       $hasilAkhir = $data['hasilAkhir'];
       $tfn = $data['tfn'];
 
-      return view("seleksi_awal_ft6",['Aj'=>$Aj,'Cj'=>$Cj,'semua'=>$data,'tfn'=>$tfn,'hasilAkhir'=>$hasilAkhir]);
+      return view("Fuzzy_Topsis.seleksi_awal_ft6",['Aj'=>$Aj,'Cj'=>$Cj,'tfn'=>$tfn,'hasilAkhir'=>$hasilAkhir]);
     }
+
 
     public function hasilAwal()
     {
@@ -229,28 +234,23 @@ class Controller extends BaseController
           }
 
 
-
           foreach ($hasilAkhir as $key => $value) {
           $Cij[] = $value['test_ip_max'];
           $Aij[] = $value['test_prilaku_min'];
           }
 
-
           $Cj = max($Cij);
           $Aj = min($Aij);
-
 
           foreach ($hasilAkhir as $key => $value) {
             $Rij1_IP[] = $tfn['Very High'][0] * $value['test_ip_min'] / $Cj;
             $Rij2_IP[] = $tfn['Very High'][1] * (1/3 * $value['total_test_ip']) / $Cj;
             $Rij3_IP[] = $tfn['Very High'][2] * $value['test_ip_max'] / $Cj;
 
-
             $Rij1_Prilaku[] = $tfn['Very Low'][2] * $Aj / $value['test_prilaku_min'];
             $Rij2_Prilaku[] = $tfn['Very Low'][1] * $Aj / (1/3 * $value['total_test_prilaku']);
             $Rij3_Prilaku[] = $tfn['Very Low'][0] * $Aj / $value['test_prilaku_max'];
           }
-
 
           $FPIS_IP_dan_Prilaku = [max($Rij1_IP), max($Rij2_IP), max($Rij3_IP), max($Rij3_Prilaku), max($Rij2_Prilaku), max($Rij1_Prilaku)];
           $FNIS_IP_dan_Prilaku = [min($Rij1_IP), min($Rij2_IP), min($Rij3_IP), min($Rij3_Prilaku), min($Rij2_Prilaku), min($Rij1_Prilaku)];
@@ -274,7 +274,6 @@ class Controller extends BaseController
             $fnis3 = pow($tfn['Very High'][2] * $value['test_ip_max'] / $Cj - $FNIS_IP_dan_Prilaku[2], 2);
             $totalIP_fnis = sqrt(1/3 * ($fnis1 + $fnis2 + $fnis3));
 
-
             //FNIS PRILAKU
             $fnis11 = pow($tfn['Very Low'][0] * $Aj / $value['test_prilaku_min'] - $FNIS_IP_dan_Prilaku[3],2);
             $fnis12 = pow($tfn['Very Low'][1] * $Aj / (1/3 * $value['total_test_prilaku']) - $FNIS_IP_dan_Prilaku[4],2);
@@ -286,8 +285,6 @@ class Controller extends BaseController
             $Cci[] = $dmin / ($dmin + $dBintang);
 
           }
-
-
 
           $saw2 = DimPenilaian::selectRaw("
           askm_dim_penilaian.akumulasi_skor,
@@ -311,11 +308,9 @@ class Controller extends BaseController
             $data_mahasiswa[] = $value;
           }
 
-
           foreach ($data_mahasiswa as $key => &$value) {
             $value["cci"] = $Cci[$key];
           }
-
 
           // uasort($data_mahasiswa, function($a, $b){
           //   return $a["cci"] <=> $b["cci"];
@@ -325,7 +320,7 @@ class Controller extends BaseController
           array_multisort($key, SORT_DESC, $data_mahasiswa);
           $krt2 = array_slice($data_mahasiswa, 0, 20);
 
-          return view('seleksi_awal_ft7',['krt2'=>$krt2]);
+          return view('Fuzzy_Topsis.seleksi_awal_ft7',['krt2'=>$krt2]);
     }
 
 
@@ -334,7 +329,6 @@ class Controller extends BaseController
     {
       $data = $this->hasilAwal();
       $dtMhs = $data['krt2'];
-
 
       $tfn = [
         "Very High"=>[7,9,9],
@@ -391,7 +385,6 @@ class Controller extends BaseController
             }
           }
 
-
           $valMatch = null;
           $seperK = null;
           $valMatchMax = null;
@@ -440,28 +433,23 @@ class Controller extends BaseController
           }
       }
 
-
       foreach ($hasilAkhir as $key => $value) {
       $Cij[] = $value['test_hasilAwal_max'];
       $Aij[] = $value['test_skkm_min'];
       }
 
-
       $Cj = max($Cij);
       $Aj = min($Aij);
-
 
       foreach ($hasilAkhir as $key => $value) {
         $Rij1_hasilAwal[] = $tfn['Very High'][0] * $value['test_hasilAwal_min'] / $Cj;
         $Rij2_hasilAwal[] = $tfn['Very High'][1] * (1/3 * $value['total_test_hasilAwal']) / $Cj;
         $Rij3_hasilAwal[] = $tfn['Very High'][2] * $value['test_hasilAwal_max'] / $Cj;
 
-
         $Rij1_skkm[] = $tfn['Very High'][2] * $Aj / $value['test_skkm_min'];
         $Rij2_skkm[] = $tfn['Very High'][1] * $Aj / (1/3 * $value['total_test_skkm']);
         $Rij3_skkm[] = $tfn['Very High'][0] * $Aj / $value['test_skkm_max'];
       }
-
 
       $FPIS_hasilAwal_dan_skkm = [max($Rij1_hasilAwal), max($Rij2_hasilAwal), max($Rij3_hasilAwal), max($Rij3_skkm), max($Rij2_skkm), max($Rij1_skkm)];
       $FNIS_hasilAwal_dan_skkm = [min($Rij1_hasilAwal), min($Rij2_hasilAwal), min($Rij3_hasilAwal), min($Rij3_skkm), min($Rij2_skkm), min($Rij1_skkm)];
@@ -485,7 +473,6 @@ class Controller extends BaseController
         $fnis3 = pow($tfn['Very High'][2] * $value['test_hasilAwal_max'] / $Cj - $FNIS_hasilAwal_dan_skkm[2], 2);
         $totalhasilAwal_fnis = sqrt(1/3 * ($fnis1 + $fnis2 + $fnis3));
 
-
         //FNIS PRILAKU
         $fnis11 = pow($tfn['Very Low'][0] * $Aj / $value['test_skkm_min'] - $FNIS_hasilAwal_dan_skkm[3],2);
         $fnis12 = pow($tfn['Very Low'][1] * $Aj / (1/3 * $value['total_test_skkm']) - $FNIS_hasilAwal_dan_skkm[4],2);
@@ -506,24 +493,10 @@ class Controller extends BaseController
 
       arsort($combineData2);
       $krt2 = array_slice($combineData2, 0,10);
-      return view('hasil_akhir_ft',['hasilFinals' => $krt2]);
+      return view('Fuzzy_Topsis.hasil_akhir_ft',['hasilFinals' => $krt2]);
 
     }
 
-    // public function paginate($items, int $perPage) : LengthAwarePaginator
-    // {
-    //   $items = $items instanceof Collection ? $items : Collection::make($items);
-    //
-    //   $currentPage = LengthAwarePaginator::resolveCurrentPage();
-    //
-    //   $currentPageItems = $items->slice(($currentPage - 1) * $perPage, $perPage);
-    //
-    //   $paginator = new LengthAwarePaginator(
-    //
-    //     $currentPageItems, $items->count(), $perPage, $currentPage
-    //   );
-    //   return $paginator;
-    // }
 
     public function PerhitunganFT()
     {
@@ -646,7 +619,7 @@ class Controller extends BaseController
           }
         }
 
-      return view("seleksi_awal_ft",['semua'=>$query,'tfn'=>$tfn,'hasilAkhir'=>$hasilAkhir]);
+      return view("Fuzzy_Topsis.seleksi_awal_ft",['semua'=>$query,'tfn'=>$tfn,'hasilAkhir'=>$hasilAkhir]);
     }
 
 
@@ -743,9 +716,9 @@ class Controller extends BaseController
 
           $dataM = [];
             foreach ($query as $dt_mhs) {
-              $ipsem1 = null;
-              $ipsem2 = null;
-              $ipsem3 = null;
+              $ipsem1;
+              $ipsem2;
+              $ipsem3;
 
                 if ($dt_mhs['ta'] == 2017 && $dt_mhs['sem_ta'] == 1) {
                   $ipsem1 = $dt_mhs['nr'];
