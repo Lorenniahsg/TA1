@@ -35,13 +35,19 @@ class FuzzyTopsisController extends Controller
       "Very Low"=>[1,1,3]
     ];
 
+    foreach ($query as $dtYr) {
+      $tahun[] = $dtYr['ta'];
+    }
+    $thnMin = min($tahun);
+    $thnMax = max($tahun);
+
     $hasilAkhir = [];
     foreach ($query as $s) {
     $valMatch = null;
     $seperK = null;
     $valMatchMax = null;
 
-      if ($s['ta'] == 2017 && $s['sem_ta']== 2 || $s['sem_ta']== 1) {
+      if ($s['ta'] == $thnMin && $s['sem_ta']== 2 || $s['sem_ta']== 1) {
         if ($s['nr'] >= 3.50 && $s['nr'] <= 4.00) {
           $valMatch = $tfn['Very High'][0];
           $seperK = $tfn['Very High'][1];
@@ -87,7 +93,7 @@ class FuzzyTopsisController extends Controller
       $valMatch = null;
       $seperK = null;
       $valMatchMax = null;
-      if ($s['ta'] == 2017 && $s['sem_ta']==2 || $s['sem_ta']==1) {
+      if ($s['ta'] == $thnMin && $s['sem_ta']==2 || $s['sem_ta']==1) {
         //  Very Low
         if($s['akumulasi_skor'] >=0 && $s['akumulasi_skor'] <=5){
           $valMatch = $tfn['Very High'][0];
@@ -188,7 +194,7 @@ class FuzzyTopsisController extends Controller
     $Cj = $data['Cj'];
     $hasilAkhir = $data['hasilAkhir'];
     $tfn = $data['tfn'];
-    return view("Fuzzy_Topsis.seleksi_awal_ft5",['Aj'=>$Aj,'Cj'=>$Cj,'tfn'=>$tfn,'hasilAkhir'=>$hasilAkhir]);
+    return view("Fuzzy_Topsis.seleksi_awal_ft5",['Aj'=>$Aj, 'Cj'=>$Cj, 'tfn'=>$tfn, 'hasilAkhir'=>$hasilAkhir]);
   }
 
 
@@ -228,13 +234,20 @@ class FuzzyTopsisController extends Controller
     "Very Low"=>[1,1,3]
   ];
 
+  foreach ($query as $dtThn) {
+    $tahun[] = $dtThn['ta'];
+  }
+
+  $thnMin = min($tahun);
+  $thnMax = max($tahun);
+
   $hasilAkhir = [];
   foreach ($query as $s) {
     $valMatch = null;
     $seperK = null;
     $valMatchMax = null;
 
-    if ($s['ta'] == 2017 && $s['sem_ta']== 2 || $s['sem_ta']== 1) {
+    if ($s['ta'] == $thnMin && $s['sem_ta']== 2 || $s['sem_ta']== 1) {
       if ($s['nr'] >= 3.50 && $s['nr'] <= 4.00) {
         $valMatch = $tfn['Very High'][0];
         $seperK = $tfn['Very High'][1];
@@ -280,7 +293,7 @@ class FuzzyTopsisController extends Controller
     $valMatch = null;
     $seperK = null;
     $valMatchMax = null;
-    if ($s['ta'] == 2017 && $s['sem_ta']==2 || $s['sem_ta']==1) {
+    if ($s['ta'] == $thnMin && $s['sem_ta']==2 || $s['sem_ta']==1) {
       //  Very Low
       if($s['akumulasi_skor'] >=0 && $s['akumulasi_skor'] <=5){
         $valMatch = $tfn['Very High'][0];

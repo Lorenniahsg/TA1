@@ -90,6 +90,7 @@
     </tbody>
   </table> -->
 
+<h4>FPIS</h4>
   <table border="1" class="table table-striped table-hover">
     <thead class="table-danger">
       <tr>
@@ -107,14 +108,16 @@
       </td>
         <td>
           <?php $fpis_prilaku = max($minfnis); ?>
-          @foreach($fpis_prilaku as $fpis_ => $fpis_pri)
-          {{ number_format($fpis_pri,2) }}
-          @endforeach
+            @foreach($fpis_prilaku as $fpis_ => $fpis_pri)
+            {{ number_format($fpis_pri,2) }}
+            @endforeach
         </td>
       </tr>
     </tbody>
   </table>
 
+
+<h4>FNIS</h4>
   <table border="1" class="table table-striped table-hover">
     <thead class="table-danger">
       <tr>

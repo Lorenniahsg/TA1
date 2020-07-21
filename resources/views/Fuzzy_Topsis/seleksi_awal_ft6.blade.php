@@ -60,6 +60,7 @@
   <table class="table table-striped table-hover">
     <thead class="table-info">
       <tr>
+        <th>No</th>
         <th>Nama</th>
         <th>FPIS IP</th>
         <th>FPIS Perilaku</th>
@@ -72,6 +73,7 @@
     </thead>
     <tbody>
     <tr>
+      <?php $no=1; ?>
       @foreach($hasilAkhir as $key => $value)
       <?php $b = null; ?>
         <?php
@@ -97,6 +99,7 @@
         $totalpri = sqrt( 1/3 * ($fnis11 + $fnis22 + $fnis33));
 
         ?>
+        <td><?= $no++; ?></td>
         <td>{{$key}}</td>
         <td>{{ number_format($totalIP_fpis,2) }}</td>
         <td>{{ number_format($total_prilaku_fpis,2) }}</td>

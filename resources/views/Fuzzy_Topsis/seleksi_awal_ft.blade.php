@@ -22,10 +22,17 @@
         </tr>
       </thead>
       <tbody>
-        <?php $no=1; ?>
+        @foreach($semua as $dtYr)
+          <?php $tahun[] = $dtYr['ta']; ?>
+        @endforeach
+        <?php
+            $no=1;
+            $thnMin = min($tahun);
+            $thnMax = max($tahun);
+        ?>
           @foreach($semua as $s)
         <tr>
-            @if ($s['ta']==2017 && $s['sem_ta'] == 2 || $s['sem_ta'] == 1)
+            @if ($s['ta']== $thnMin && $s['sem_ta'] == 2 || $s['sem_ta'] == 1)
             <td><?php echo $no++; ?></td>
             <td>{{$s['nama']}}</td>
             <td>{{$s['ta']}}</td>
@@ -124,7 +131,7 @@
           </td>
           <td class="table-danger">
             <!-- Very Low -->
-        @if($s['akumulasi_skor'] >=0 && $s['akumulasi_skor'] <=5)
+        @if($s['akumulasi_skor'] >= 0 && $s['akumulasi_skor'] <=5)
           @foreach(array_keys($tfn) as $key => $value)
             @if($key == 0)
               {{$value . '('}}

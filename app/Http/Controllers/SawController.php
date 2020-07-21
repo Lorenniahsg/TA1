@@ -26,19 +26,28 @@ class SawController extends Controller
         ->orderBy('dimx_dim.nama','asc')
         ->get();
 
+        foreach ($query as $dtThn) {
+          $tahun[] = $dtThn['ta'];
+        }
+
+        $thnMin = min($tahun);
+        $thnMax = max($tahun);
+
+
         $dataM = [];
         foreach ($query as $dt_mhs) {
           $ipsem1;
           $ipsem2;
           $ipsem3;
 
-          if ($dt_mhs['ta'] == 2017 && $dt_mhs['sem_ta'] == 1) {
+
+          if ($dt_mhs['ta'] == $thnMin && $dt_mhs['sem_ta'] == 1) {
             $ipsem1 = $dt_mhs['nr'];
           }
-          if ($dt_mhs['ta'] == 2017 && $dt_mhs['sem_ta'] == 2) {
+          if ($dt_mhs['ta'] == $thnMin && $dt_mhs['sem_ta'] == 2) {
             $ipsem2 = $dt_mhs['nr'];
           }
-          if ($dt_mhs['ta'] == 2018 && $dt_mhs['sem_ta'] == 1) {
+          if ($dt_mhs['ta'] == $thnMax && $dt_mhs['sem_ta'] == 1) {
             $ipsem3 = $dt_mhs['nr'];
           }
           if (isset($ipsem1)) {
@@ -139,7 +148,7 @@ class SawController extends Controller
 
       $key = array_column($dataMahasiswas, 'hasil_akhir_saw');
       array_multisort($key, SORT_DESC, $dataMahasiswas);
-      $krt2 = array_slice($dataMahasiswas, 0, 10); 
+      $krt2 = array_slice($dataMahasiswas, 0, 10);
 
       return view('SAW.seleksi_akhir_saw',['hasil_akhir_saw'=>$krt2]);
     }
