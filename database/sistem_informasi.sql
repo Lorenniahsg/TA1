@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 24, 2020 at 05:13 AM
+-- Generation Time: Jul 21, 2020 at 06:15 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -3446,34 +3446,6 @@ INSERT INTO `dimx_dim` (`dim_id`, `nim`, `nama`, `thn_masuk`, `dari_jlh_anak`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `hasil_seleksi_awal_saw`
---
-
-CREATE TABLE `hasil_seleksi_awal_saw` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `hasil` double(8,2) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `kriteria`
---
-
-CREATE TABLE `kriteria` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `kode` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nama` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `atribut` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `bobot` double(8,2) NOT NULL,
-  `keterangan` text COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `migrations`
 --
 
@@ -3512,19 +3484,6 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `seleksiawal`
---
-
-CREATE TABLE `seleksiawal` (
-  `id` int(11) NOT NULL,
-  `dim_id` int(50) NOT NULL,
-  `nama` varchar(200) NOT NULL,
-  `nilaiAwal` int(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `skkm`
 --
 
@@ -3539,8 +3498,29 @@ CREATE TABLE `skkm` (
 --
 
 INSERT INTO `skkm` (`id`, `dim_id`, `skkm`) VALUES
-(58, 2514, 12.00),
-(59, 2376, 5.00);
+(249, 2557, 10.00),
+(250, 2376, 34.00),
+(251, 2208, 58.00),
+(253, 2579, 46.00),
+(254, 2253, 10.00),
+(255, 2256, 29.00),
+(256, 2547, 37.00),
+(257, 2372, 10.00),
+(259, 2475, 32.00),
+(260, 2492, 36.00),
+(261, 2584, 35.00),
+(262, 2474, 12.00),
+(263, 2235, 8.00),
+(264, 2353, 8.00),
+(265, 2246, 12.00),
+(266, 2307, 10.00),
+(267, 2527, 12.00),
+(269, 2379, 10.00),
+(270, 2560, 27.00),
+(271, 2314, 12.00),
+(275, 2340, 10.00),
+(276, 2339, 10.00),
+(277, 2514, 10.00);
 
 -- --------------------------------------------------------
 
@@ -3569,18 +3549,6 @@ ALTER TABLE `dimx_dim`
   ADD PRIMARY KEY (`dim_id`);
 
 --
--- Indexes for table `hasil_seleksi_awal_saw`
---
-ALTER TABLE `hasil_seleksi_awal_saw`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `kriteria`
---
-ALTER TABLE `kriteria`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
@@ -3591,12 +3559,6 @@ ALTER TABLE `migrations`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
-
---
--- Indexes for table `seleksiawal`
---
-ALTER TABLE `seleksiawal`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `skkm`
@@ -3623,34 +3585,16 @@ ALTER TABLE `dimx_dim`
   MODIFY `dim_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2609;
 
 --
--- AUTO_INCREMENT for table `hasil_seleksi_awal_saw`
---
-ALTER TABLE `hasil_seleksi_awal_saw`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `kriteria`
---
-ALTER TABLE `kriteria`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `seleksiawal`
---
-ALTER TABLE `seleksiawal`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `skkm`
 --
 ALTER TABLE `skkm`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=278;
 
 --
 -- AUTO_INCREMENT for table `users`

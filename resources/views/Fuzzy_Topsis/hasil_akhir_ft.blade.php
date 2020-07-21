@@ -3,10 +3,12 @@
 @section('intro-header')
 
 <div class="container">
-  <h1>Calon Mahasiswa Teladan</h1>
+  <h2>Kandidat Calon Mahasiswa Teladan</h2>
+  <hr>
   <table class="table table-striped table-hover">
-    <thead>
+    <thead class="table-info">
       <th>No</th>
+      <th>NIM</th>
       <th>Nama</th>
       <th>Nilai</th>
     </thead>
@@ -16,10 +18,11 @@
         @foreach($hasilFinals as $key => $value)
         <td><?= $no++; ?></td>
         <td>
-          {{$key}}
+          {{$value['nim']}}
         </td>
+        <td>{{$value['nama']}}</td>
         <td>
-          {{$value}}
+          {{number_format($value['cci2'],2)}}
         </td>
       </tr>
       @endforeach

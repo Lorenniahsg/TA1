@@ -14,41 +14,39 @@ use App\Http\Controllers\Controller;
 class DimxDimController extends Controller
 {
   public function index()
-{
-  $dimx_dim = DimxDim::orderBy('nama', 'ASC')->paginate(10);
+  {
+    $dimx_dim = DimxDim::orderBy('nama', 'ASC')->paginate(10);
+    return view('dimx_dim',['dimx_dim' => $dimx_dim]);
+  }
 
-  return view('dimx_dim',['dimx_dim'=>$dimx_dim]);
-}
+  public function export_excel()
+  {
+    return Excel::download(new DimxDimExport, 'dimx_dim.xlsx');
+  }
 
-public function export_excel()
-{
-  return Excel::download(new DimxDimExport, 'dimx_dim.xlsx');
-}
+  public function import_excel(Request $request)
+  	{
+  		// validasi
+  		$this->validate($request, [
+  			'file' => 'required|mimes:csv,xls,xlsx'
+  		]);
 
-public function import_excel(Request $request)
-	{
-		// validasi
-		$this->validate($request, [
-			'file' => 'required|mimes:csv,xls,xlsx'
-		]);
+  		// menangkap file excel
+  		$file = $request->file('file');
 
-		// menangkap file excel
-		$file = $request->file('file');
+  		// membuat nama file unik
+  		$nama_file = rand().$file->getClientOriginalName();
 
-		// membuat nama file unik
-		$nama_file = rand().$file->getClientOriginalName();
+  		// upload ke folder file_siswa di dalam folder public
+  		$file->move('file_excell',$nama_file);
 
-		// upload ke folder file_siswa di dalam folder public
-		$file->move('file_excell',$nama_file);
+  		// import data
+  		Excel::import(new DimxDimImport, public_path('/file_excell/'.$nama_file));
 
-		// import data
-		Excel::import(new DimxDimImport, public_path('/file_excell/'.$nama_file));
+  		// notifikasi dengan session
+  		Session::flash('sukses','Data Berhasil Diimport!');
 
-		// notifikasi dengan session
-		Session::flash('sukses','Data Berhasil Diimport!');
-
-		// alihkan halaman kembali
-		return redirect('/dimx_dim');
-	}
-
+  		// alihkan halaman kembali
+  		return redirect('/dimx_dim');
+  	}
 }

@@ -3,21 +3,22 @@
 @section('intro-header')
 
 <div class="container">
-<h1>Fuzzy Topsis</h1>
+<h2>Fuzzy Topsis</h2>
 <hr>
-<a class="btn btn-primary float-right" href="{{ url('Seleksi_FT') }}">Seleksi Mahasiswa</a>
-<h1>Daftar Mahasiswa</h1>
+<a class="btn btn-info float-right" href="{{ url('Seleksi_FT') }}">Seleksi Mahasiswa</a>
+<h3>Daftar Mahasiswa</h3>
+<hr>
   <table class="table table-striped table-hover">
-      <thead>
+      <thead class="table-info">
         <tr>
           <th>No</th>
           <th>Nama</th>
           <th>Tahun</th>
           <th>SEMESTER</th>
           <th>IP</th>
-          <th>TFN1</th>
-          <th>PRILAKU</th>
-          <th>TFN2</th>
+          <th>TFN IP</th>
+          <th>PERILAKU</th>
+          <th>TFN PERILAKU</th>
         </tr>
       </thead>
       <tbody>
@@ -30,7 +31,7 @@
             <td>{{$s['ta']}}</td>
             <td>{{$s['sem_ta']}}</td>
             <td>{{$s['nr']}}</td>
-            <td>
+            <td class="table-warning">
             <!-- Veery High -->
             @if( $s['nr'] >= 3.50 && $s['nr'] <= 4.00 )
             @foreach(array_keys($tfn) as $key => $value)
@@ -121,7 +122,7 @@
             @endif
           =  {{$s['akumulasi_skor']}}
           </td>
-          <td>
+          <td class="table-danger">
             <!-- Very Low -->
         @if($s['akumulasi_skor'] >=0 && $s['akumulasi_skor'] <=5)
           @foreach(array_keys($tfn) as $key => $value)

@@ -1,49 +1,58 @@
 @extends('template')
 @section('title', 'SAW')
 @section('intro-header')
-<div class="container">
+<div class="container d-flex justify-content-between">
 
 
-<h1>Hasil Perankingan Fuzzy Topsis</h1>
 
-<table class="table">
-  <thead>
-    <th>No</th>
-    <th>Nama</th>
-    <th>Nilai</th>
-  </thead>
-  <tbody>
-    <tr>
-      <?php $no=1; ?>
-      @foreach($Fuzzy_Topsis as $nama => $nilai )
-      <td><?=$no++; ?></td>
-      <td>{{$nama}}</td>
-      <td>{{$nilai}}</td>
-    </tr>
-      @endforeach
-  </tbody>
-</table>
+<?php
+  $data_ft = array_slice($Fuzzy_Topsis,0,10);
+  $data_saw = array_slice($saw,0,10);
+ ?>
+ <div class="col-md-6">
+   <h2>Hasil Ranking Fuzzy Topsis</h2>
+   <table class="table table-striped table-hover">
+     <thead class="table-info">
+       <th>No</th>
+       <th>NIM</th>
+       <th>Nama</th>
+       <th>Nilai</th>
+     </thead>
+     <tbody>
+       <tr>
+         <?php $no=1; ?>
+         @foreach($data_ft as $nama => $nilai )
+         <td><?=$no++; ?></td>
+         <td>{{$nilai['nim']}}</td>
+         <td>{{$nilai['nama']}}</td>
+         <td>{{abs($nilai['cci2'])}}</td>
+       </tr>
+       @endforeach
+     </tbody>
+   </table>
+ </div>
 
-<br><br>
-
-
-<h1>Hasil Perangkingan SAW</h1>
-<table class="table">
-  <thead>
-    <th>No</th>
-    <th>Nama</th>
-    <th>Nilai</th>
-  </thead>
-  <tbody>
-    <tr>
-      <?php $no=1; ?>
-      @foreach($saw as $hasil)
-      <td><?= $no++; ?></td>
-      <td>{{$hasil['nama']}}</td>
-      <td>{{$hasil['hasil_akhir_saw']}}</td>
-    </tr>
-      @endforeach
-  </tbody>
-</table>
+<div class="col-md-6">
+  <h2>Hasil Ranking SAW</h2>
+  <table class="table table-striped table-hover">
+    <thead class="table-info">
+      <th>No</th>
+      <th>NIM</th>
+      <th>Nama</th>
+      <th>Nilai</th>
+    </thead>
+    <tbody>
+      <tr>
+        <?php $no=1; ?>
+        @foreach($data_saw as $hasil)
+        <td><?= $no++; ?></td>
+        <td>{{$hasil['nim']}}</td>
+        <td>{{$hasil['nama']}}</td>
+        <td>{{number_format($hasil['hasil_akhir_saw'],2)}}</td>
+      </tr>
+        @endforeach
+    </tbody>
+  </table>
+</div>
 </div>
 @endsection

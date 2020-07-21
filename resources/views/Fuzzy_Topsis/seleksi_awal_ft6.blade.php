@@ -2,11 +2,12 @@
 @section('title', 'Fuzzy Topsis')
 @section('intro-header')
 
-<div class="container-fluid">
-  <h1>Fuzzy Topsis</h1>
+<div class="container">
+  <h2>Fuzzy Topsis</h2>
   <hr>
-<a class="btn btn-primary float-right" href="{{ url('hasilAwal')}}">Hasil Awal</a>
-  <h1>Jarak FPIS dan FNIS</h1>
+    <a class="btn btn-info float-right" href="{{ url('hasilAwal')}}">Hasil Seleksi Awal</a>
+  <h3>Jarak FPIS dan FNIS</h3>
+  <hr>
     <?php
       $maxfpis = [];
       $minfniis = []; ?>
@@ -57,13 +58,13 @@
           ?>
 
   <table class="table table-striped table-hover">
-    <thead>
+    <thead class="table-info">
       <tr>
         <th>Nama</th>
-        <th>FPIS IPK</th>
-        <th>FPIS Prilaku</th>
-        <th>FNIS IPK</th>
-        <th>FNIS PRILAKU</th>
+        <th>FPIS IP</th>
+        <th>FPIS Perilaku</th>
+        <th>FNIS IP</th>
+        <th>FNIS Perilaku</th>
         <th>d*</th>
         <th>d&macr;</th>
         <th>CCi</th>
@@ -85,7 +86,6 @@
         $total_prilaku_fpis = sqrt(1/3 * ($fpis11 + $fpis22 + $fpis33));
 
 
-
         $fnis1 = pow($tfn['Very High'][0] * $value['test_ip_min'] / $Cj['Cj'] - $fnis_IP['FPIS_MAX1'], 2);
         $fnis2 = pow($tfn['Very High'][1] * $value['total_test_ip'] * 1/3 / $Cj['Cj'] - $fnis_IP['FPIS_MAX2'], 2);
         $fnis3 = pow($tfn['Very High'][2] * $value['test_ip_max'] / $Cj['Cj'] - $fnis_IP['FPIS_MAX3'], 2);
@@ -98,16 +98,16 @@
 
         ?>
         <td>{{$key}}</td>
-        <td>{{$totalIP_fpis}}</td>
-        <td>{{$total_prilaku_fpis}}</td>
-        <td>{{$totalIP_fnis}}</td>
-        <td>{{$totalpri}}</td>
+        <td>{{ number_format($totalIP_fpis,2) }}</td>
+        <td>{{ number_format($total_prilaku_fpis,2) }}</td>
+        <td>{{ number_format($totalIP_fnis,2) }}</td>
+        <td>{{ number_format($totalpri,2) }}</td>
         <?php $dFPIS = $totalIP_fpis + $total_prilaku_fpis; ?>
-        <td>{{$dFPIS}}</td>
+        <td>{{ number_format($dFPIS,2) }}</td>
         <?php $dFNIS = $totalIP_fnis + $totalpri; ?>
-        <td>{{$dFNIS}}</td>
+        <td>{{ number_format($dFNIS,2) }}</td>
         <?php $Cci = $dFNIS / ($dFNIS + $dFPIS); ?>
-        <td>{{$Cci}}</td>
+        <td class="table-primary">{{ number_format($Cci,2) }}</td>
         </tr>
       <?php $Ccii [] = $Cci ?>
       <?php $collection_Cci = $Ccii; ?>
@@ -115,31 +115,6 @@
       <?php $nama2 = $nama; ?>
       @endforeach
   </tbody>
-  </table>
-
-
-  <table border="1">
-    <thead>
-      <tr>
-        <th>No</th>
-        <th>Nama</th>
-        <th>Nilai</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php
-      $combineData = array_combine($nama2, $collection_Cci);
-      arsort($combineData);
-      $i = 1;
-     ?>
-      @foreach($combineData as $key => $value)
-      <tr>
-        <td>{{$i++}}</td>
-        <td>{{$key}}</td>
-        <td>{{$value}}</td>
-      </tr>
-      @endforeach
-    </tbody>
   </table>
 </div>
 @endsection

@@ -14,16 +14,17 @@ use App\Http\Controllers\Controller;
 class AdakRegistrasiController extends Controller
 {
   public function index()
-{
-  $adak_regis = AdakRegistrasi::paginate(10);
-  return view('adak_registrasi',['adak_registrasi'=>$adak_regis]);
-}
-public function export_excel()
-{
-  return Excel::download(new AdakRegistrasiExport, 'adak_registrasi.xlsx');
-}
+  {
+    $adak_regis = AdakRegistrasi::paginate(10);
+    return view('adak_registrasi',['adak_registrasi'=>$adak_regis]);
+  }
 
-public function import_excel(Request $request)
+  public function export_excel()
+  {
+    return Excel::download(new AdakRegistrasiExport, 'adak_registrasi.xlsx');
+  }
+
+  public function import_excel(Request $request)
 	{
 		// validasi
 		$this->validate($request, [

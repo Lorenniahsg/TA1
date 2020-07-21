@@ -1,32 +1,22 @@
 @extends('template')
-@section('title', 'SAW')
+@section('title', 'Import Data Perilaku')
 @section('intro-header')
-    <!-- Header -->
-    <header class="intro-header text-black">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    </header>
-    <!-- END : Header -->
-@endsection
 
-<!-- Main -->
-<br><br><br><br>
 <div class="container">
-    <h1>SAW</h1>
+    <h2>Import Nilai Perilaku Mahasiswa</h2>
     <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item left">
-            <a class="nav-link {{ request()->is('dimx_dim') ? 'active': null }}" href="{{ url('dimx_dim') }}" role="tab">Import Data Mahasiswa</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link {{ request()->is('adak_registrasi') ? 'active': null }}" href="{{ url('adak_registrasi') }}" role="tab">Import Data IP</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link {{ request()->is('askm_dim_penilaian') ? 'active': null }}" href="{{ url('askm_dim_penilaian') }}" role="tab">Import Data Prilaku</a>
-            </li>
+      <li class="nav-item left">
+        <a class="nav-link {{ request()->is('dimx_dim') ? 'active': null }}" href="{{ url('dimx_dim') }}" role="tab">Import Data Mahasiswa</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {{ request()->is('adak_registrasi') ? 'active': null }}" href="{{ url('adak_registrasi') }}" role="tab">Import Data IP</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {{ request()->is('askm_dim_penilaian') ? 'active': null }}" href="{{ url('askm_dim_penilaian') }}" role="tab">Import Data Perilaku</a>
+      </li>
     </ul>
-	<div class="container">
 		<center>
 			<h4>Import Excel Nilai Perilaku Mahasiswa</h4>
-			<!-- <h5><a target="_blank" href="https://www.malasngoding.com/">www.malasngoding.com</a></h5> -->
 		</center>
 
 		{{-- notifikasi form validasi --}}
@@ -54,12 +44,10 @@
 				<form method="post" action="/askm_dim_penilaian/import_excel" enctype="multipart/form-data">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
+							<h5 class="modal-title" id="exampleModalLabel">Import Nilai Perilaku Excel</h5>
 						</div>
 						<div class="modal-body">
-
 							{{ csrf_field() }}
-
 							<label>Pilih file excel</label>
 							<div class="form-group">
 								<input type="file" name="file" required="required">
@@ -76,11 +64,9 @@
 		</div>
 
 
-
 		<a href="/askm_dim_penilaian/export_excel" class="btn btn-success my-3" target="_blank" hidden>EXPORT EXCEL</a>
-
 		<table class="table table-striped table-hover">
-      <strong style="float: right;">Data Per Halaman : {{ $askm_dim_penilaian->perPage() }}</strong>
+      <strong style="float: right;">Data Per Halaman : {{ $askm_dim_penilaian->count() }}</strong>
 			<thead>
 				<tr>
 					<th>No</th>
@@ -103,16 +89,6 @@
 		</table>
     <strong>Halaman : {{ $askm_dim_penilaian->currentPage() }}</strong>
     <strong style="float: right;">Jumlah Data : {{ $askm_dim_penilaian->total() }}</strong>
-    <br>
-    <div class="card-body">
       {{ $askm_dim_penilaian->links()}}
-	  </div>
-	</div>
 </div>
-
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-</body>
-</html>
+@endsection

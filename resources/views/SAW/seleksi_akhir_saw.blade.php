@@ -3,13 +3,14 @@
 @section('intro-header')
 
 <div class="container">
-  <h1>SAW</h1>
+  <h2>Simple Additive Weighting(SAW)</h2>
   <hr>
-  <h2>Ranking Mahasiswa</h2>
-
-  <table class="table">
-    <thead>
+  <h3>Rekomendasi Mahasiswa Teladan</h3>
+  <hr>
+  <table class="table table-striped table-hover">
+    <thead class="table-success">
       <th>No</th>
+      <th>NIM</th>
       <th>Nama</th>
       <th>Nilai</th>
     </thead>
@@ -18,8 +19,9 @@
         <?php $no=1; ?>
         @foreach($hasil_akhir_saw as $key)
         <td><?= $no++; ?></td>
+        <td>{{ $key['nim'] }}</td>
         <td>{{$key['nama']}}</td>
-        <td>{{$key['hasil_akhir_saw']}}</td>
+        <td>{{number_format($key['hasil_akhir_saw'],2)}}</td>
       </tr>
         @endforeach
     </tbody>

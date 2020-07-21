@@ -1,32 +1,22 @@
 @extends('template')
-@section('title', 'SAW')
+@section('title', 'Import Data Mahasiswa')
 @section('intro-header')
-    <!-- Header -->
-    <header class="intro-header text-black">
 
-    </header>
-    <!-- END : Header -->
-@endsection
-
-<!-- Main -->
-<br><br><br><br>
 <div class="container">
-    <h1>SAW</h1>
+    <h2>Import Data Mahasiswa</h2>
     <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item left">
-            <a class="nav-link {{ request()->is('dimx_dim') ? 'active': null }}" href="{{ url('dimx_dim') }}" role="tab">Import Data Mahasiswa</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link {{ request()->is('adak_registrasi') ? 'active': null }}" href="{{ url('adak_registrasi') }}" role="tab">Import Data IP</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link {{ request()->is('askm_dim_penilaian') ? 'active': null }}" href="{{ url('askm_dim_penilaian') }}" role="tab">Import Data Prilaku</a>
-            </li>
+      <li class="nav-item left">
+        <a class="nav-link {{ request()->is('dimx_dim') ? 'active': null }}" href="{{ url('dimx_dim') }}" role="tab">Import Data Mahasiswa</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {{ request()->is('adak_registrasi') ? 'active': null }}" href="{{ url('adak_registrasi') }}" role="tab">Import Data IP</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {{ request()->is('askm_dim_penilaian') ? 'active': null }}" href="{{ url('askm_dim_penilaian') }}" role="tab">Import Data Perilaku</a>
+      </li>
     </ul>
-	<div class="container">
 		<center>
 			<h4>Import Excel Data Mahasiswa</h4>
-			<!-- <h5><a target="_blank" href="https://www.malasngoding.com/">www.malasngoding.com</a></h5> -->
 		</center>
 
 		{{-- notifikasi form validasi --}}
@@ -57,9 +47,7 @@
 							<h5 class="modal-title" id="exampleModalLabel">Import Data Mahasiswa</h5>
 						</div>
 						<div class="modal-body">
-
 							{{ csrf_field() }}
-
 							<label>Pilih file excel</label>
 							<div class="form-group">
 								<input type="file" name="file" required="required">
@@ -76,14 +64,12 @@
 		</div>
 
 
-
 		<a href="/dimx_dim/export_excel" class="btn btn-success my-3" target="_blank" hidden>EXPORT EXCEL</a>
-    <br>
 		<table class="table table-striped table-hover">
-      <strong style="float: right;">Jumlah Data Per Halaman : {{ $dimx_dim->perPage() }}</strong>
+      <strong style="float: right;">Jumlah Data Per Halaman : {{ $dimx_dim->count() }}</strong>
 			<thead>
 				<tr>
-					<t>No</th>
+					<th>No</th>
 					<th>NIM</th>
 					<th>Nama</th>
 					<th>Tahun Masuk</th>
@@ -91,12 +77,12 @@
 			</thead>
 			<tbody>
 				@php $i=1 @endphp
-				@foreach($dimx_dim as $s)
+				@foreach($dimx_dim as $data_Mhs)
 				<tr>
 					<td >{{ $i++ }}</td>
-					<td>{{$s->nim}}</td>
-					<td>{{$s->nama}}</td>
-					<td>{{$s->thn_masuk}}</td>
+					<td>{{$data_Mhs->nim}}</td>
+					<td>{{$data_Mhs->nama}}</td>
+					<td>{{$data_Mhs->thn_masuk}}</td>
 				</tr>
 				@endforeach
 			</tbody>
@@ -104,10 +90,6 @@
 
     <strong>Halaman : {{ $dimx_dim->currentPage() }}</strong>
     <strong style="float: right;">Jumlah Data : {{ $dimx_dim->total() }}</strong>
-    <br>
-    <div class="card-body">
-      {{ $dimx_dim->links()}}
-	  </div>
+    {{ $dimx_dim->links()}}
 </div>
-</body>
-</html>
+@endsection

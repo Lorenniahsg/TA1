@@ -3,17 +3,18 @@
 @section('intro-header')
 
 <div class="container">
-  <h1>SAW</h1>
+  <h2>Simple Additive Weighting(SAW)</h2>
   <hr>
-  <h2>Hasil Seleksi Awal</h2>
+  <h3>Hasil Seleksi Awal</h3>
   <hr>
 <a href="{{ url('hasilAkhirSaw') }}" class="btn btn-info btn-md">Hasil Akhir</a>
-  <table class="table ">
-    <thead>
+  <table class="table table-striped table-hover">
+    <thead class="table-success">
       <th>No</th>
+      <th>NIM</th>
       <th>Nama</th>
       <th>Nilai Awal</th>
-      <th>Action</th>
+      <th>SKKM</th>
       <th></th>
       <th></th>
     </thead>
@@ -22,8 +23,9 @@
         <?php $no=1; ?>
         @foreach($data_20_besar as $value)
         <td><?= $no++; ?></td>
+        <td>{{$value['nim']}}</td>
         <td>{{$value['nama']}}</td>
-        <td>{{$value['hasil_awal_saw']}}</td>
+        <td>{{number_format($value['hasil_awal_saw'],2)}}</td>
         <td>
             @if($value['skkm'] == null)
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal<?php echo $value['dim_id']; ?>">

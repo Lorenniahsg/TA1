@@ -3,17 +3,21 @@
 @section('intro-header')
 
 <div class="container">
-  <h1>Fuzzy Topsis</h1>
+  <h2>Fuzzy Topsis</h2>
   <hr>
-<a class="btn btn-primary float-right col-sm-6" href="{{ url('hasilAkhirFT')}}">Hasil Akhir</a>
-  <h1>Jarak FPIS dan FNIS</h1>
+    <a class="btn btn-info float-right" href="{{ url('hasilAkhirFT')}}">Hasil Seleksi Akhir</a>
+  <h3>Hasil Seleksi Awal</h3>
+  <hr>
   <table class="table table-striped table-hover">
-    <thead>
+    <thead class="table-info">
       <tr>
         <th>No</th>
+        <th>NIM</th>
         <th>Nama</th>
-        <th>Nilai</th>
-        <th>Action</th>
+        <th>Nilai Hasil Seleksi Awal</th>
+        <th>SKKM</th>
+        <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -24,8 +28,9 @@
       @foreach($krt2 as $key => $value)
       <tr>
         <td>{{$i++}}</td>
+        <td>{{ $value['nim'] }}</td>
         <td>{{$value['nama']}}</td>
-        <td>{{$value['cci']}}</td>
+        <td>{{ number_format($value['cci'],2) }}</td>
         <td>
             @if($value['skkm'] == null)
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal<?php echo $value['dim_id']; ?>">

@@ -14,17 +14,17 @@ use App\Http\Controllers\Controller;
 class DimPenilaianController extends Controller
 {
   public function index()
-{
-  $askm_dim_penilaian = DimPenilaian::paginate(10);
-  return view('askm_dim_penilaian',['askm_dim_penilaian'=>$askm_dim_penilaian]);
-}
+  {
+    $askm_dim_penilaian = DimPenilaian::paginate(10);
+    return view('askm_dim_penilaian',['askm_dim_penilaian'=>$askm_dim_penilaian]);
+  }
 
-public function export_excel()
-{
-  return Excel::download(new DimPenilaianExport, 'askm_dim_penilaian.xlsx');
-}
+  public function export_excel()
+  {
+    return Excel::download(new DimPenilaianExport, 'askm_dim_penilaian.xlsx');
+  }
 
-public function import_excel(Request $request)
+  public function import_excel(Request $request)
 	{
 		// validasi
 		$this->validate($request, [
@@ -49,5 +49,4 @@ public function import_excel(Request $request)
 		// alihkan halaman kembali
 		return redirect('/askm_dim_penilaian');
 	}
-
 }
