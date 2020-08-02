@@ -61,7 +61,9 @@ class SawController extends Controller
           }
         }
 
+
         foreach ($dataM as $key => $value) {
+          error_reporting (E_ALL ^ E_NOTICE); 
           $IPK[] = ($value['ipsem1'] + $value['ipsem2'] + $value['ipsem3']) / 3;
         }
 

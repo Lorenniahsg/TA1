@@ -64,7 +64,7 @@
 		</div>
 
 
-		<a href="/askm_dim_penilaian/export_excel" class="btn btn-success my-3" target="_blank" hidden>EXPORT EXCEL</a>
+		<a href="/askm_dim_penilaian/export_excel" class="btn btn-success my-3" target="_blank" hidden>EXPORT PERILAKU EXCEL</a>
 		<table class="table table-striped table-hover">
       <strong style="float: right;">Data Per Halaman : {{ $askm_dim_penilaian->count() }}</strong>
 			<thead>

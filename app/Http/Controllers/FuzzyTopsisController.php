@@ -117,6 +117,9 @@ class FuzzyTopsisController extends Controller
           $valMatchMax = $tfn['Very Low'][2];
         }
       }
+
+
+      //Normalisasi Matrix
       if(isset($valMatch)){
         /* Menghitung nilai minimal test_perilaku */
         if ((!isset($hasilAkhir[$s['nama']]["test_perilaku_min"])) || ($hasilAkhir[$s['nama']]["test_perilaku_min"] > $valMatch)) {
@@ -578,8 +581,11 @@ class FuzzyTopsisController extends Controller
 
       $dStar = $ttlHslAwl + $ttlSkkm;
       $dmin = $ttlHslAwl2 + $ttlSkkm2;
-      $Cci[] = $dmin / ($dmin - $dStar);
+      $dstar[] = $dStar;
+      $dMin[] = $dmin;
+      $Cci[] = $dmin / ($dmin + $dStar);
     }
+
 
     foreach ($dtMhs as $key => $value) {
       $dataMhs2[] = $value;

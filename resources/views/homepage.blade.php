@@ -7,10 +7,12 @@
     <style media="screen">
       body{
       background: url('{{ asset('template_madan/images/madan1.jpg') }}') no-repeat;
-      height: 100%;
+      background-size: cover;
+
       }
       .box{
         position: absolute;
+        width: 750px;
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
@@ -19,14 +21,16 @@
   </head>
   <body>
     <div class="container">
-        <div class="box mb-100">
+        <div class="box mb-100" style="background:white;">
             <center>
               <h3 class="cool-md-12" style="background:white; width:500px;">Pemilihan Mahasiswa Teladan IT Del</h3>
             </center>
-          <p style="background:white;">
+          <p >
+            <center>
             Mahasiswa teladan merupakan salah satu mahasiswa yang menjadi panutan untuk mahasiswa lain.
             Mahasiswa teladan memiliki sikap dan perilaku yang patut untuk dicontoh oleh mahasiswa lainnya.
             Di Institut Teknologi Del (IT Del) pemilihan mahasiswa teladan diadakan setiap 1 (satu) tahun sekali.
+            </center>
           </p>
           <center>
             <a href="/dimx_dim" class="btn btn-primary">Jalankan Aplikasi</a>

@@ -35,7 +35,26 @@
           <td>{{ $dt_mhs['nim'] }}</td>
           <td>{{ $dt_mhs['nama'] }}</td>
           <td>{{ number_format($dt_mhs['ipTotal'], 2) }}</td>
-          <td>{{ $dt_mhs['akumulasi_skor'] }}</td>
+          <td>
+            @if( $dt_mhs['akumulasi_skor'] == 0 )
+                {{ 'A' }}
+            @elseif($dt_mhs['akumulasi_skor'] >=1 && $dt_mhs['akumulasi_skor'] <=5)
+                {{ 'AB' }}
+            @elseif( $dt_mhs['akumulasi_skor'] >=6 && $dt_mhs['akumulasi_skor'] <=10)
+                {{ 'B' }}
+            @elseif( $dt_mhs['akumulasi_skor'] >=11 && $dt_mhs['akumulasi_skor'] <=15)
+                {{ 'BC' }}
+            @elseif( $dt_mhs['akumulasi_skor'] >=16 && $dt_mhs['akumulasi_skor'] <=25)
+                {{ 'C' }}
+            @elseif( $dt_mhs['akumulasi_skor'] >=26 && $dt_mhs['akumulasi_skor'] <=30)
+                {{ 'D' }}
+            @elseif( $dt_mhs['akumulasi_skor'] > 30)
+                {{ 'E' }}
+            @else
+                {{ 'data tidak terdefenisi' }}
+            @endif
+            {{ $dt_mhs['akumulasi_skor'] }}
+          </td>
         </tr>
           @endif
           @endforeach

@@ -64,7 +64,7 @@
 		</div>
 
 
-		<a href="/dimx_dim/export_excel" class="btn btn-success my-3" target="_blank" hidden>EXPORT EXCEL</a>
+		<a href="/dimx_dim/export_excel" class="btn btn-success my-3" target="_blank" hidden>EXPORT DATA MAHASISWA EXCEL</a>
 		<table class="table table-striped table-hover">
       <strong style="float: right;">Jumlah Data Per Halaman : {{ $dimx_dim->count() }}</strong>
 			<thead>

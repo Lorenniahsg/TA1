@@ -25,7 +25,7 @@
          <td><?=$no++; ?></td>
          <td>{{$nilai['nim']}}</td>
          <td>{{$nilai['nama']}}</td>
-         <td>{{abs($nilai['cci2'])}}</td>
+         <td>{{number_format($nilai['cci2'],2)}}</td>
        </tr>
        @endforeach
      </tbody>
