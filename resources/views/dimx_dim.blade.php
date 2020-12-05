@@ -3,7 +3,7 @@
 @section('intro-header')
 
 <div class="container">
-    <h2>Import Data Mahasiswa</h2>
+    <h2 class="mt-2 mb-5">Import Data Mahasiswa</h2>
     <ul class="nav nav-tabs" role="tablist">
       <li class="nav-item left">
         <a class="nav-link {{ request()->is('dimx_dim') ? 'active': null }}" href="{{ url('dimx_dim') }}" role="tab">Import Data Mahasiswa</a>
@@ -15,10 +15,8 @@
         <a class="nav-link {{ request()->is('askm_dim_penilaian') ? 'active': null }}" href="{{ url('askm_dim_penilaian') }}" role="tab">Import Data Perilaku</a>
       </li>
     </ul>
-		<center>
-			<h4>Import Excel Data Mahasiswa</h4>
-		</center>
-
+		<h4 class="text-center m-2">Import Excel Data Mahasiswa</h4>
+		
 		{{-- notifikasi form validasi --}}
 		@if ($errors->has('file'))
 		<span class="invalid-feedback" role="alert">
@@ -34,7 +32,7 @@
 		</div>
 		@endif
 
-		<button type="button" class="btn btn-primary mr-5" data-toggle="modal" data-target="#importExcel">
+		<button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#importExcel">
 			Import Data Mahasiswa
 		</button>
 

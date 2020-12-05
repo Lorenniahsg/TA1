@@ -23,7 +23,6 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse justify-content-center" id="navbarResponsive">
-          
             <ul class="navbar-nav">
               <li class="nav-item">
                 <a class="nav-link" style="color:black;" href="{{ url('/') }}">Home</a>
