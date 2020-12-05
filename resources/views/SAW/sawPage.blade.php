@@ -53,7 +53,7 @@
             @else
                 {{ 'data tidak terdefenisi' }}
             @endif
-            {{ $dt_mhs['akumulasi_skor'] }}
+            = {{ $dt_mhs['akumulasi_skor'] }}
           </td>
         </tr>
           @endif

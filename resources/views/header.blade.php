@@ -22,9 +22,9 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbar-Responsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="nav justify-content-center" id="navbarResponsive">
-          <center>
-            <ul class="nav nav-tabs">
+      <div class="collapse navbar-collapse justify-content-center" id="navbarResponsive">
+          
+            <ul class="navbar-nav">
               <li class="nav-item">
                 <a class="nav-link js-scroll-trigger" style="color:black;" href="{{ url('/') }}">Home</a>
               </li>
@@ -41,7 +41,7 @@
                 <a class="nav-link js-scroll-trigger" style="color:black;"   href="{{ url('/perbandingan') }}">Perbandingan</a>
               </li>
             </ul>
-          </center>
+          
       </div>
     </div>
   </nav>

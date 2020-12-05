@@ -1,7 +1,7 @@
 @extends('template')
 @section('title', 'SAW')
 @section('intro-header')
-<div class="container d-flex justify-content-between">
+<div class="container d-flex justify-content-center">
 
 
 
@@ -9,7 +9,11 @@
   $data_ft = array_slice($Fuzzy_Topsis,0,10);
   $data_saw = array_slice($saw,0,10);
  ?>
- <div class="col-md-6">
+<div class="row">
+
+
+ 
+ <div class="col-lg-6 col-md-6">
    <h2>Hasil Ranking Fuzzy Topsis</h2>
    <table class="table table-striped table-hover">
      <thead class="table-info">
@@ -32,7 +36,7 @@
    </table>
  </div>
 
-<div class="col-md-6">
+<div class="col-lg-6 col-md-6">
   <h2>Hasil Ranking SAW</h2>
   <table class="table table-striped table-hover">
     <thead class="table-info">
@@ -53,6 +57,7 @@
         @endforeach
     </tbody>
   </table>
+</div>
 </div>
 </div>
 @endsection
